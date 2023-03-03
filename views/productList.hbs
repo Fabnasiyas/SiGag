@@ -1,0 +1,79 @@
+
+    <nav class="navbar navbar-light bg-dark ">
+    
+        <h1 style="color: white;">Admin Panel</h1>
+        <a href="" style="color: white;">DashBoard</a>
+        <a href="/admin/user-list" style="color: white;">Users</a>
+        <a href="/admin/product-list" style="color: white;">Products</a>
+        <a href="/admin/category-list" style="color: white;">Category</a>
+        <a href="/admin/order-list" style="color: white;">Orders</a>
+        <a href="/admin/coupons" style="color: white;">Coupon</a>
+        <a href=""></a>
+        <a href="/admin/logout" style="color: white;">Logout</a>
+        <a href=""></a>
+    
+    </nav>
+<!-- <br>
+    <h2>Product Details</h2> -->
+    
+<nav class="navbar navbar-light bg-light mt-4">
+    <br>
+   
+    <form class="form-inline mb-2" action="#" method="post" >
+      <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search here" aria-label="Search">
+      <button class="btn_1 btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      
+      {{!-- //<form action="/add-product" method="post"> --}}
+      <a href="/admin/add-product"><button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Add Product</button></a>
+    {{!-- </form> --}}
+  </nav>
+  
+  <table class="table ml-5">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Product Name</th>
+         <th scope="col">Price</th>
+        <th scope="col">Brand</th>
+        <th scope="col">Category</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Description</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+     {{#each product}}
+      <tr>
+        <td><img style="height:  30px; width:30px;" src="/product-images/{{this.image.filename}}" alt=""></td>
+        <td>{{this.productname}}</td>
+        <td>{{this.price}}</td>
+        <td>{{this.brand}}</td>
+        <td>{{this.category}}</td>
+
+        <td>{{this.stock}}</td>
+        <td>{{this.description}}</td>
+        {{!-- 
+          <a href="/admin/delete-product/{{this._id}}" class="btn btn-outline-dark">Delete</a></td>
+        
+      </tr> --}}
+
+      <td> {{#if this.block}}
+                {{!-- <button
+                  onclick="if( confirm(' Are you sure to unlist User?')){window.location.href='/admin/unlistproduct/{{this._id}}' }"
+                  class="btn btn-success ">UnList</button> --}}
+                  <a class="btn btn-success" href="/admin/unlistproduct/{{this._id}}">UnList</a>
+                {{else}}
+                {{!-- <button
+                  onclick="if( confirm(' Are you sure to list User?')){window.location.href='/admin/listproduct/{{this._id}}' }"
+                  class="btn btn-danger ">List Product</button> --}}
+                   <a class="btn btn-danger" href="/admin/listproduct/{{this._id}}">List Product</a>
+                {{/if}}
+              </td>
+    <td><a href="/admin/editproduct/{{this._id}}" class="btn_1 btn-outline-dark">Edit Product</a>
+     {{/each}}
+      
+      
+    </tbody>
+  </table> 
+  

@@ -1,0 +1,39 @@
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Add Product</p>
+  
+       
+        <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
+  <div class="container mt-5">
+           <label for="">Product Name</label>
+          <input type="text" name="productname" class="form-control"  required />
+          <label for="">Price</label>
+           <input type="number" name="price" class="form-control" required />
+          <label for="">Brand</label>
+          <input type="text" name="brand" class="form-control" required/>
+          <label for="">Stock</label>
+        <input type="number" name="stock" class="form-control" required/>
+          <label for="">Category</label>
+           <select name="category" id="Category" class="form-control" required>
+            <option value=""></option>
+            {{#each categorys}}
+              <option value="{{this.category}}">{{this.category}}</option>
+            {{/each}}
+          </select>
+          
+          <label for="">Description</label>
+          <input type="text" name="description" class="form-control" required/>
+          {{!-- image --}}
+          <label for="">Image</label>
+          <input type="file" id="form3Example1c" name="image" class="form-control" placeholder="image" required  />
+          <label for="">Side Image</label>
+          <input type="file" id="form3Example1c" name="sideimage" class="form-control" placeholder="image" required multiple />
+         
+
+          <button type="submit" class="btn btn-success mt-5">Submit</button>
+        </form>  <div class="row">
+     
+        
+      </div>
+    </div>
+  </div>
+

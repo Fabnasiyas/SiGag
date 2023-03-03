@@ -1,0 +1,71 @@
+<nav class="navbar navbar-light bg-dark">
+
+  <h1 style="color: white;">Admin Panel</h1>
+  <a href="" style="color: white;">DashBoard</a>
+  <a href="/admin/user-list" style="color: white;">Users</a>
+  <a href="/admin/product-list" style="color: white;">Products</a>
+  <a href="/admin/category-list" style="color: white;">Category</a>
+  <a href="/admin/order-list" style="color: white;">Orders</a>
+  <a href="/admin/coupons" style="color: white;">Coupon</a>
+  <a href=""></a>
+  <a href="/admin/logout" style="color: white;">Logout</a>
+  <a href=""></a>
+
+</nav>
+<br />
+
+<nav class="navbar navbar-light bg-light">
+  <br />
+
+  <form class="form-inline" action="#" method="post">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      name="name"
+      placeholder="Search here"
+      aria-label="Search"
+    />
+    <a href=""><button
+        class="btn btn-outline-dark my-2 my-sm-0"
+        type="submit"
+      >Search</button></a>
+  </form>
+
+</nav>
+
+<table class="table ml-5" id="usertable">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Phone No</th>
+      <th scope="col">Email</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each user}}
+      <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.mobile}}</td>
+        <td>{{this.email}}</td>
+
+        {{#if this.block}}
+          <td>
+            <button
+              onclick="if( confirm(' Are you sure to unblock User?')){window.location.href='/admin/unblockuser/{{this._id}}' }"
+              class="btn_1 btn-success"
+            >Unblock</button>
+          </td>
+        {{else}}
+          <td>
+            <button
+              onclick="if( confirm(' Are you sure to block User?')){window.location.href='/admin/blockuser/{{this._id}}' }"
+              class="btn_1 btn-danger"
+            >Block</button>
+          </td>
+        {{/if}}
+      </tr>
+    {{/each}}
+
+  </tbody>
+</table>

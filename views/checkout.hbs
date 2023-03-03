@@ -1,0 +1,297 @@
+<body>
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <h1>Si<span style="color: #ff2020;">Gag</span></h1>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="">shop</a></li>
+                                    <li><a href="">about</a></li>
+
+                                    <li><a href="#">Pages</a>
+                                        <ul class="submenu">
+                                            <li><a href='/user-login'>Login</a></li>
+                                            <li><a href="/cart">Cart</a></li>
+
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Header Right -->
+                        <div class="header-right">
+                            <ul>
+                                <li>
+                                    <div class="nav-search search-switch">
+                                        <span class="flaticon-search"></span>
+                                    </div>
+                                </li>
+
+                                <li> <a href="/user-login"><span class="flaticon-user"></span></a></li>
+                                <li><a href="/cart"><span class="flaticon-shopping-cart"></span></a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+    <div class="colorlib-loader"></div>
+
+    <div id="page">
+        <nav class="colorlib-nav" role="navigation">
+
+
+            <div class="colorlib-product">
+                <div class="container">
+                    <div id="page-content">
+                        <!--Page Title-->
+                        <div class="page section-header text-center">
+                            <div class="page-title">
+                                <div class="wrapper">
+                                    <h1 class="page-width">Checkout</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End Page Title-->
+
+                        <div class="container">
+                            <div class="row">
+
+
+
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+
+
+                                    <form action="/couponincheckout" method="post">
+                                        <span id="errMsg"
+                                            class="gl-text u-s-m-b-16 font-weight-bold text-danger">Available
+                                            coupons</span>
+                                        <div class="u-s-m-b-16">
+                                            <div class="u-s-m-b-15">
+
+                                                <label for="coupon"></label>
+
+                                                <input class="input-text input-text--primary-style text-center"
+                                                    type="text" id="coupon" name="coupon" placeholder="Coupon Code" />
+                                                <input type="hidden" name="userId" value="{{user._id}}" />
+                                            </div>
+                                            <div class="u-s-m-b-15">
+
+                                                <button class="btn btn-primary mt-2" type="submit">APPLY</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                                        <form action="/checkout" method="post">
+                            <div class="row billing-fields">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
+                                    <div class="create-ac-content bg-light-gray padding-20px-all">
+                                        <h4
+                                            style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold; font-size: 15px; color: rgb(212, 83, 83); text-transform: capitalize;">
+                                            select an address</h4>
+                                            <div class="row">
+                                                {{#each address}}
+                                                <div class="col-md-6">
+                                                    <div class="address-box"
+                                                        style="border: 1px solid rgb(51, 51, 51);margin-bottom: 12px; padding: 10px; border-radius: 10px; font-size: 14px;">
+
+
+
+
+                                                        <div class="manage-address"
+                                                            style="display: flex; flex-direction: column;">
+
+
+                                                            <b>{{this.name}}</b>
+                                                            <b>{{this.mobile}} </b>
+                                                            <b>{{this.address}}</b>
+                                                            <b>PIN:{{this.pincode}}</b>
+
+                                                        </div>
+
+                                                        <input type="radio" value="{{item.id}}  " name="address"
+                                                            required>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                {{/each}}
+
+                                            </div>
+                                            
+<a href="/addAddrsincheckout" class="btn btn-dark rounded-4 ">Add Address</a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                    <div class="your-order-payment">
+                                        <div class="your-order">
+                                            <h2 class="order-title mb-4">Your Order</h2>
+
+                                            <div class="table-responsive-sm order-table">
+                                                <table class="bg-white table table-bordered table-hover text-center">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-left">Product Name</th>
+                                                            <th>Price</th>
+                                                            <th>Quantity</th>
+                                                            <th>SubTotal</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {{#each products}}
+
+                                                        <tr>
+                                                            <td class="text-left">{{this.productname}} </td>
+                                                            <td>₹{{price}}</td>
+                                                            <td>{{this.quantity}}</td>
+                                                            <td>₹{{this.totalprice}}</td>
+                                                        </tr>
+
+                                                        {{/each}}
+
+                                                    </tbody>
+                          <input type="hidden" name="allAmount" value="{{Allamount}}">
+                                                    <tfoot class="font-weight-600">
+                                                        <tr>
+                                                            <td colspan="3" class="text-right">Shipping </td>
+                                                            <td>₹ 50</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3" class="text-right">Total</td>
+                                                            
+                                                            <td>{{Allamount}} </td>
+                                                        </tr>
+
+
+
+
+
+                                                        <tr>
+                                                            <td colspan="3" class="text-right">coupon status</td>
+                                                            <td> <b>{{message}} </b></td>
+
+                                                        </tr>
+
+
+
+                                                        <tr>
+                                                            <td colspan="3" class="text-right">Discount</td>
+                                                            <td> <b style="color: rgb(108, 214, 143);">₹{{discount.cashback}}
+                                                                </b></td>
+                                                        </tr>
+
+                                                        <tr>
+                                                            <td colspan="3" class="text-right">After Applying Coupon
+                                                            </td>
+                                                            <td> <b>₹ {{discount.discountedPrice}}</b></td>
+                                                            <td> <b>₹ {{lastprice}}</b></td>
+                                                        </tr>
+
+
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <hr/>
+
+                                        <div class="your-payment">
+                                            <h2 class="payment-title mb-3">payment method</h2>
+                                            <div class="payment-method">
+                                                <div class="payment-accordion">
+                                                    <div id="accordion" class="payment-section">
+                                                        <div class="card mb-2">
+
+
+                                                            <div class="card-header" style="display: flex; gap: 10px;">
+                                                                <input type="radio" id="cod" name="payment" value="cod"
+                                                                    required>
+                                                                <a class="card-link" data-toggle="collapse"
+                                                                    href="#collapseOne" style="color: black;">Cash On
+                                                                    Delivery </a>
+                                                            </div>
+
+
+
+                                                            <div id="collapseOne" class="collapse"
+                                                                data-parent="#accordion">
+                                                                <div class="card-body">
+                                                                    <p class="no-margin font-15">payment method in which
+                                                                        customers don't pay for mailed goods until
+                                                                        they've received and decided to keep them.</p>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card mb-2 collapsed card-link">
+
+                                                            <div class="card-header"
+                                                                style="display: flex; gap: 10px; align-items: center;">
+                                                                <input type="radio" id="online" name="payment"
+                                                                    value="online" required>
+                                                                <a class="collapsed card-link" data-toggle="collapse"
+                                                                    href="#collapseTwo" style="color: black;"> online
+                                                                    Payment </a>
+                                                            </div>
+                                                            <div id="collapseTwo" class="collapse"
+                                                                data-parent="#accordion">
+                                                                <div class="card-body">
+                                                                    <p class="no-margin font-15">Online payment allows
+                                                                        you to pay money via the internet. Buyers will
+                                                                        use this type of payment when they purchase
+                                                                        goods online or offline. They can use different
+                                                                        types of online payment methods, including
+                                                                        debit/credit cards, wire transfers, net banking,
+                                                                        and digital wallets.</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="order-button-payment">
+                                                    <button class="btn" type="submit">Place order</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+</body>

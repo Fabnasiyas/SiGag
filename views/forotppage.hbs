@@ -1,0 +1,67 @@
+
+<form action="/getotp" method="post">
+  <div class="container height-50 d-flex justify-content-center align-items-center" style="margin-top: 15rem;">
+    <div class="position-relative">
+      <div class="card p-3 text-center">
+        <h4>OTP Verification</h4>
+        <h6>Please enter the one time password <br />to verify your account</h6>
+        <p id="countdown"></p>
+        <div>
+          <span>A code has been sent to your number</span> <small></small>
+        </div>
+        {{#if error}}
+        {{message}}
+        {{/if}}
+        <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+          <input class="m-2 text-center form-control rounded" type="text" id="first" name="otp" />
+        </div>
+        <div class="mt-4">
+          <button class="btn btn-danger px-4 validate">Verify</button>
+          <a href="/resendotp" class="btn btn-secondary" >Rsesnd OTP</a>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+  let countdown = document.getElementById("countdown");
+  let resendBtn = document.querySelector(".resend-otp");
+  let count = 60;
+  let countdownInterval;
+
+  function startCountdown() {
+    countdownInterval = setInterval(() => {
+      count--;
+      countdown.innerText = "OTP Resend in " + count;
+      checkOver();
+    }, 1000);
+  }
+
+  function checkOver() {
+    if (count == 0) {
+      clearInterval(countdownInterval);
+      resendBtn.disabled = false;
+      countdown.innerHTML = `<span class="text-primary resend-btn" onclick="resendOTP()"><a href="/resendotp"> Resend OTP</a></span>`;
+    }
+  }
+
+  function resendOTP() {
+  count = 60;
+  startCountdown();
+  resendBtn.disabled = true;
+
+  // generate new OTP
+  let otp = Math.floor(Math.random() * 1000000);
+  req.session.signupOTP = otp;
+  req.session.signupEmail = "<user's email address>";
+
+  // send OTP via email
+  sendOTP(req.session.signupEmail, otp);
+  console.log('New OTP sent');
+}
+
+
+  startCountdown();
+</script>

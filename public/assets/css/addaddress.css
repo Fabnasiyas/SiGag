@@ -1,0 +1,107 @@
+.checkoutCard{
+    background-color: #51624F;
+    border-radius: 30px;
+    /* height: 300px; */
+  }
+  
+  
+  .couponAdd{
+    padding-top: 10px;
+    border-bottom: 1px solid white;
+    border-top: 3px solid white;
+    padding-bottom: 5px;
+  }
+  
+  .couponAdd input{
+    width: 180px !important;
+    height: 50px;
+    border: none;
+    outline: none;
+    background: #f2f2f2d0;
+    border-radius: 5px;
+    font-size: 22px;
+  }
+  .couponAdd button{
+    width: 100px;
+    height: 40px;
+    margin-top: 5px;
+    background: none;
+    color: white;
+    border: 1px solid white;
+  }
+  .succesfull{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .succesfull .card{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 300px;
+    width: 400px;
+  }
+  .succesfull .card i{
+    font-size: 105px;
+    color: greenyellow;
+  }
+  .succesfull .card a{
+  text-decoration: none;
+  font-weight: 500;
+  }
+  
+  
+  
+  .addressCard{
+  box-shadow: 4px 4px 6px 2px black;
+   height: 160px;
+   width: 600px !important;
+  margin-top: 10px !important;
+  
+   margin-bottom: 20px;
+  }
+  .addressCard li{
+    list-style: none;
+  }
+  
+  .addressCard  .userName{
+    color: black !important;
+    font-weight: 500;
+  }
+  
+  .addressList{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    
+  }
+  .addressSection a{
+    text-decoration: none;
+    font-weight: 500;
+  
+  }
+  .addressList a{ 
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .product-add{
+    width:700px !important;
+    gap: 10px !important;
+    border: 2px solid #51624F;
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .dropdown{
+    height: 50px;
+  }
+  .namefield{
+    height: 50px;
+  }
+  .add-prdct-btn{
+    height:40px !important;
+  }

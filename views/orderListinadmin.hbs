@@ -1,0 +1,87 @@
+
+    <nav class="navbar navbar-light bg-dark ">
+    
+        <h1 style="color: white;">Admin Panel</h1>
+        <a href="" style="color: white;">DashBoard</a>
+        <a href="/admin/user-list" style="color: white;">Users</a>
+        <a href="/admin/product-list" style="color: white;">Products</a>
+        <a href="/admin/category-list" style="color: white;">Category</a>
+        <a href="/admin/order-list" style="color: white;">Orders</a>
+        <a href="/admin/coupons" style="color: white;">Coupon</a>
+        <a href=""></a>
+        <a href="/admin/logout" style="color: white;">Logout</a>
+        <a href=""></a>
+    
+    </nav>
+    <br>
+    
+    
+<nav class="navbar navbar-light bg-light">
+    <br>
+   
+    <form class="form-inline" action="#" method="post" >
+      <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search here" aria-label="Search">
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      
+     
+  </nav>
+  
+  <table class="table ml-5">
+    <thead>
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col">User</th>
+        
+        <th scope="col">Phone No</th>
+        <th scope="col">Price</th>
+        <th scope="col">Order Date</th>
+        <th scope="col">Status</th>
+        <th scope="col">Payment</th>
+        <th scope="col">Action</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+    
+      {{#each order}}
+      <tr>
+        <td >{{this.products.productname}}</td>
+        <td>{{this.address.name}}</td>
+        
+        <td>{{this.address.mobile}}</td>
+        <td>{{this.totalPrice}}</td>
+        <td>{{this.orderDate}}</td>
+        <td>{{this.orderStatus}}</td>
+         <td>{{this.payment}}</td>
+        <td class="border-dark">
+           <div class="dropdown">
+                    <button
+                      class="btn btn-secondary dropdown-toggle"
+                      type="button"
+                      id="dropdownMenuButton"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {{this.orderStatus}}
+                    </button>
+                    <div
+                      class="dropdown-menu"
+                      aria-labelledby="dropdownMenuButton"
+                    >
+
+                      <a class="dropdown-item"  href="/admin/order-pending/{{this._id}}" >Pendding</a>
+                      <a class="dropdown-item" href="/admin/order-cancel/{{this._id}}">Cancelled</a>
+                      <a class="dropdown-item" href="/admin/order-shipped/{{this._id}}" >Shipped</a>
+                      <a class="dropdown-item" href="/admin/order-delivered/{{this._id}}">Delivered</a>
+                    </div>
+                  </div>
+                </td>
+      
+      </tr>
+      {{/each}}
+  
+    </tbody>
+  </table> 
+  

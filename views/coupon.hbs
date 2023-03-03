@@ -1,0 +1,79 @@
+
+    <nav class="navbar navbar-light bg-dark ">
+    
+        <h1 style="color: white;">Admin Panel</h1>
+        <a href="" style="color: white;">DashBoard</a>
+        <a href="/admin/user-list" style="color: white;">Users</a>
+        <a href="/admin/product-list" style="color: white;">Products</a>
+        <a href="/admin/category-list" style="color: white;">Category</a>
+        <a href="/admin/order-list" style="color: white;">Orders</a>
+        <a href="/admin/coupons" style="color: white;">Coupon</a>
+        <a href=""></a>
+        <a href="/admin/logout" style="color: white;">Logout</a>
+        <a href=""></a>
+    
+    </nav>
+<!-- <br>
+    <h2>Product Details</h2> -->
+    
+<nav class="navbar navbar-light bg-light mt-4">
+    <br>
+   
+    <form class="form-inline mb-2" action="#" method="post" >
+      <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search here" aria-label="Search">
+      <button class="btn_1 btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      
+      {{!-- //<form action="/add-product" method="post"> --}}
+      <a href="/admin/addcoupon"><button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Add Coupon</button></a>
+    {{!-- </form> --}}
+  </nav>
+  
+  <table class="table ml-5">
+    <thead>
+      <tr>
+        <th scope="col">Coupon Name</th>
+        <th scope="col">Code</th>
+         <th scope="col">Minimum Amount</th>
+          <th scope="col">Discount</th>
+         <th scope="col">Date</th>
+        <th scope="col">Status</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+    {{#each coupons}}
+      <tr>
+      
+        <td>{{this.name}}</td>
+        <td>{{this.code}}</td>
+        <td>{{this.minAmount}} </td>
+        <td>{{this.cashback}}</td>
+        <td>{{this.expiry}}</td>
+       <td>{{this.status}}</td>
+       <td><a href="/admin/editcoupon/{{this._id}}" class="btn">Edit</a></td>
+<td> {{#if this.block}}
+                {{!-- <button
+                  onclick="if( confirm(' Are you sure to unlist User?')){window.location.href='/admin/unlistproduct/{{this._id}}' }"
+                  class="btn btn-success ">UnList</button> --}}
+                  <a class="btn btn-success" href="/admin/unlistcoupon/{{this._id}}">UnList</a>
+                {{else}}
+                {{!-- <button
+                  onclick="if( confirm(' Are you sure to list User?')){window.location.href='/admin/listproduct/{{this._id}}' }"
+                  class="btn btn-danger ">List Product</button> --}}
+                   <a class="btn btn-danger" href="/admin/listcoupon/{{this._id}}">List</a>
+                {{/if}}
+              </td>
+
+       {{!-- <td><a href="/admin/deletecoupon/{{this._id}}" class="btn">Delete</a></td> --}}
+        
+      </tr> 
+{{/each}}
+      
+  
+   
+      
+      
+    </tbody>
+  </table> 
+  
