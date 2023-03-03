@@ -23,6 +23,7 @@ module.exports = {
     console.log(req.body);
     let admin = await adminModel.findOne({ email });
     console.log(admin);
+    console.log(admin);
     if (admin) {
       if (password == admin.password) {
         req.session.admin = {
