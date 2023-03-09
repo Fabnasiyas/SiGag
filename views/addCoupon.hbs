@@ -4,7 +4,13 @@
        
         <form action="/admin/addcoupon" method="POST" >
   <div class="container mt-5">
-    
+     {{#if error}}
+        <p>Coupon Code Already exists</p>
+        {{/if}}
+         {{#if cerror}}
+        <p>Coupon Name Already exists</p>
+        {{/if}}
+       
            <label for="">Coupon Name</label>
           <input type="text" name="name" class="form-control" />
           <label for="">Code</label>

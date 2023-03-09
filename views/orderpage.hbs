@@ -6,10 +6,10 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <h1>Si<span style="color: #ff2020;">Gag</span></h1>
+                            <a href="/"><h1>Si<span style="color: #ff2020;">Gag</span></h1></a>
                         </div>
                         <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
+                        {{!-- <div class="main-menu d-none d-lg-block">
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="/">Home</a></li>
@@ -26,7 +26,7 @@
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
                             </nav>
-                        </div>
+                        </div> --}}
                         <!-- Header Right -->
                         <div class="header-right">
                             <ul>
@@ -50,14 +50,21 @@
         </div>
         <!-- Header End -->
     </header>
-<div style="padding-top: 100px;"></div>
+     <div style="color: #ff2020; padding-left:865px; " class="mt-5 "><h1>ORDER PAGE</h1></div>
+<div style="padding-top: 70px;"></div>
       <table class="table ml-5">
     <thead>
       <tr>
-        <th scope="col">OrderId</th>
         <th scope="col">Product Name</th>
-         <th scope="col">Image</th>
+        <th scope="col">Image</th>
         <th scope="col">Quantity</th>
+        <th scope="col">OrderId</th>
+        
+        <th scope="col">Addres</th>
+         
+        
+        <th scope="col">Payment</th>
+        <th scope="col">Amount</th>
         <th scope="col">Status</th>
         
         
@@ -68,12 +75,16 @@
     <tbody>
   {{#each orders}}
       <tr>
-        
-        <td>{{this._id}}</td>
         <td>{{this.products.productname}}</td>
-        
         <td><img style="height:  30px; width:30px;" src="/product-images/{{this.products.image.filename}}" alt=""></td>
         <td>{{this.quantity}}</td>
+        <td>{{this._id}}</td>
+        
+        <td>{{this.address.address}}</td>
+        
+        
+        <td>{{this.payment}}</td>
+        <td>{{this.totalPrice}}</td>
         <td>{{this.orderStatus}}</td>
         <td><a href="/vieworderdetails/{{this._id}}" class="btn btn-outline-dark">View</a></td>  
       </tr>

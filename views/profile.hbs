@@ -165,19 +165,21 @@
                             {{!-- {{/unless}} --}}
                         </div>
                         {{#each Address.address}}
-                        <div class="manage-address-row">
+                        {{!-- <div class="manage-address-row"> --}}
+                            <div >
                             <div class="man-ad-left">
                                 <b>{{this.name}}</b>
                                 <b>{{this.mobile}} </b>
                                 <b>{{this.address}}</b>
                                 <b>PIN:{{this.pincode}}</b>
                             </div>
-                            <div class="man-ad-right">
-                                <a href="/deleteaddress/{{this.id}}">
+                            {{!-- <div class="man-ad-right"> --}}
+                                <div>
+                                <a href="/deleteaddress/{{this.id}}" style="text-decoration: none;">
                                     <i class="ri-delete-bin-5-line"></i>
                                 </a>
                                 
-                                <a href='/editaddress/{{this.id}}'><i class="ri-edit-box-line"></i></a>
+                                <a href='/editaddress/{{this.id}}'><i class="ri-edit-box-line" style="text-decoration: none;"></i></a>
                             </div>
                         </div>
                         {{/each}}

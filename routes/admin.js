@@ -55,6 +55,7 @@ const router=express.Router();
 router.get('/order-pending/:id',adminController.getorderpending)
 router.get("/order-cancel/:id",adminController.getordercancel)
 router.get('/order-shipped/:id',adminController.getordershipped)
+router.get('/admin/order-return/:id',adminController.getorderreturn)
 router.get('/order-delivered/:id',adminController.getorderdelivered)
    router.get('/logout',adminController.adminlogut)
 

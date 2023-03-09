@@ -48,7 +48,7 @@ module.exports = {
   },
   // for getting User Details Page
   getuserlist: async (req, res) => {
-    const user = await userModel.find().lean();
+    const user = await userModel.find().sort({ _id: -1 }).lean();
     res.render("UserList", { user });
   },
   // for user blocking
@@ -97,7 +97,7 @@ module.exports = {
   },
   // for getting add product
   getaddProduct: async (req, res) => {
-    const categorys = await categoryModel.find().lean();
+    const categorys = await categoryModel.find().sort({ _id: -1 }).lean();
     res.render("addProduct", { categorys });
   },
   // for posting add product
@@ -192,6 +192,7 @@ module.exports = {
   // for posting editproduct page
   posteditProduct: (req, res) => {
     const _id = req.params.id;
+    
     const {
       productname,
       price,
@@ -203,33 +204,106 @@ module.exports = {
       sideimage,
     } = req.body;
 
-    productModel.findByIdAndUpdate(
-      _id,
-      {
-        $set: {
-          productname,
-          price,
-          brand,
-          category,
-          stock,
-          description,
-          image: req.files.image[0],
-          sideimage: req.files.sideimage,
-        },
+if(req.files.image && req.files.sideimage){
+   
+  productModel.findByIdAndUpdate(
+    _id,
+    {
+      $set: {
+        productname,
+        price,
+        brand,
+        category,
+        stock,
+        description,
+        image: req.files.image[0],
+        sideimage: req.files.sideimage,
       },
-      (err, data) => {
-        if (err) {
-          res.redirect("back");
-        } else {
-          res.redirect("/admin/product-list");
-        }
+    },
+    (err, data) => {
+      if (err) {
+        res.redirect("back");
+      } else {
+        res.redirect("/admin/product-list");
       }
-    );
+    }
+  );
+}else if(req.files.image && !req.files.sideimage){
+  
+  productModel.findByIdAndUpdate(
+    _id,
+    {
+      $set: {
+        productname,
+        price,
+        brand,
+        category,
+        stock,
+        description,
+        image: req.files.image[0],
+      },
+    },
+    (err, data) => {
+      if (err) {
+        res.redirect("back");
+      } else {
+        res.redirect("/admin/product-list");
+      }
+    }
+
+  );
+}else if(! req.files.image && req.files.sideimage){
+  productModel.findByIdAndUpdate(
+    _id,
+    {
+      $set: {
+        productname,
+        price,
+        brand,
+        category,
+        stock,
+        description,
+        sideimage: req.files.sideimage,
+      },
+    },
+    (err, data) => {
+      if (err) {
+        res.redirect("back");
+      } else {
+        res.redirect("/admin/product-list");
+      }
+    }
+
+  );
+}else if(! req.files.image && ! req.files.sideimage){
+  productModel.findByIdAndUpdate(
+    _id,
+    {
+      $set: {
+        productname,
+        price,
+        brand,
+        category,
+        stock,
+        description,
+       
+      },
+    },
+    (err, data) => {
+      if (err) {
+        res.redirect("back");
+      } else {
+        res.redirect("/admin/product-list");
+      }
+    }
+
+  );
+}
   },
 
   // for getting  category List page
   getcategory: async (req, res) => {
-    let categorys = await categoryModel.find({}).lean();
+    let categorys = await categoryModel.find({}).sort({ _id: -1 }).lean();
     res.render("category", { categorys });
   },
   // for getting add category page
@@ -300,36 +374,64 @@ module.exports = {
   },
   // for getting order list page
   getorderlist: async (req, res) => {
-    let order = await orderModel.find().lean();
+    let order = await orderModel.find().sort({ _id: -1 }).lean();
 
     res.render("orderListinadmin", { order });
   },
   getcoupon: async (req, res) => {
     let coupons = await couponModel.find().sort({ _id: -1 }).lean();
+    if (coupons) {
+      for (const i of coupons) {
+        i.expiry=(i.expiry).toLocaleDateString()
+      }
+    }
     res.render("coupon", { coupons });
   },
 
   getaddcoupon: (req, res) => {
     res.render("addCoupon");
   },
+  
+
   postaddcoupon: async (req, res) => {
-    let block = false;
-    const { name, code, minAmount, cashback, expiry } = req.body;
-    console.log(req.body);
-    const coupon = await couponModel.create(
-      {
+    try {
+      const { name, code, minAmount, cashback, expiry } = req.body;
+  
+      // Check if the coupon code already exists (case-insensitive)
+      const existingCoupon = await couponModel.findOne({ code: { $regex: `^${code}$`, $options: 'i' } });
+  
+      if (existingCoupon) {
+        // Coupon code already exists, send an error message
+        return res.render('addcoupon', { error: 'Coupon code already exists' });
+      }
+  
+      const existingname = await couponModel.findOne({ name: { $regex: `^${name}$`, $options: 'i' } });
+      if (existingname) {
+        // Coupon name already exists, send an error message
+        return res.render('addcoupon', { cerror: 'Coupon name already exists' });
+      }
+  
+      // Create a new coupon with the provided information
+      const newCoupon = await couponModel.create({
         name,
         code,
         minAmount,
         cashback,
-        expiry,
-        block,
-      },
-
-      res.redirect("/admin/coupons")
-    );
+        expiry: new Date().toLocaleDateString(),
+        block: false,
+      });
+  
+      // Redirect the user to the "/admin/coupons" page
+      res.redirect('/admin/coupons');
+    } catch (error) {
+      console.error(error); // log the error in the console for debugging purposes
+      const errorMessage = "An error occurred: " + error.message; // create an error message for the user
+      res.render('addcoupon', { error: errorMessage }); // display the error message on the page itself
+    }
   },
-
+  
+  
+  
   geteditcoupon: async (req, res) => {
     try {
       const _id = req.params.id;
@@ -426,11 +528,25 @@ module.exports = {
       {
         $set: {
           orderStatus: "delivered",
+          returnstatus:true,
+          cancel:true
+        },
+      }
+    );
+  },
+  getorderreturn: async (req, res) => {
+    let orderId = req.params.id;
+    await orderModel.updateOne(
+      { _id: orderId },
+      {
+        $set: {
+          orderStatus: "Return",
         },
       }
     );
   },
 
+  
   adminlogut: (req, res) => {
     req.session.admin = null;
 

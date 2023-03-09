@@ -34,9 +34,11 @@
         <th scope="col">User</th>
         
         <th scope="col">Phone No</th>
+        <th scope="col">address</th>
         <th scope="col">Price</th>
         <th scope="col">Order Date</th>
-        <th scope="col">Status</th>
+        {{!-- <th scope="col">Status</th>
+        <th scope="col">Return Status</th> --}}
         <th scope="col">Payment</th>
         <th scope="col">Action</th>
        
@@ -50,9 +52,11 @@
         <td>{{this.address.name}}</td>
         
         <td>{{this.address.mobile}}</td>
+        <td>{{this.address.address}}</td>
         <td>{{this.totalPrice}}</td>
         <td>{{this.orderDate}}</td>
-        <td>{{this.orderStatus}}</td>
+        {{!-- <td>{{this.orderStatus}}</td>
+        <td>{{this.returnstatus}}</td> --}}
          <td>{{this.payment}}</td>
         <td class="border-dark">
            <div class="dropdown">
@@ -75,9 +79,13 @@
                       <a class="dropdown-item" href="/admin/order-cancel/{{this._id}}">Cancelled</a>
                       <a class="dropdown-item" href="/admin/order-shipped/{{this._id}}" >Shipped</a>
                       <a class="dropdown-item" href="/admin/order-delivered/{{this._id}}">Delivered</a>
+                    <a class="dropdown-item" href="/admin/order-return/{{this._id}}" >Return</a>
+                     
                     </div>
                   </div>
                 </td>
+      
+      
       
       </tr>
       {{/each}}

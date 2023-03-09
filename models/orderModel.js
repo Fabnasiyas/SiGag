@@ -52,6 +52,12 @@ const orderSchema= new mongoose.Schema({
         type:Number,
         required:true
     },
+    returnstatus:{
+        type:Boolean,
+        required:true,
+        default:false
+    },
+    
     
 })
 const orderModel= mongoose.model("order", orderSchema);

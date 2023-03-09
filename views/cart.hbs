@@ -7,27 +7,18 @@
           <div class="menu-wrapper">
             <!-- Logo -->
             <div class="logo">
-              <h1>Si<span style="color: #ff2020;">Gag</span></h1>
+              <a href="/"><h1>Si<span style="color: #ff2020;">Gag</span></h1></a>
             </div>
             <!-- Main-menu -->
             <div class="main-menu d-none d-lg-block">
-              <nav>
+              {{!-- <nav>
                 <ul id="navigation">
                   <li><a href="index.html">Home</a></li>
                   <li><a href="shop.html">shop</a></li>
                   <li><a href="about.html">about</a></li>
-                  {{!-- <li class="hot"><a href="#">Latest</a>
-                    <ul class="submenu">
-                      <li><a href="shop.html"> Product list</a></li>
-                      <li><a href="product_details.html"> Product Details</a></li>
-                    </ul>
-                  </li> --}}
+                  
                   <li><a href="">Category</a>
-                    {{!-- <ul class="submenu">
-                      {{#each categ}}
-                      <li><a href="">{{this.category}}</a></li>
-                      {{/each}}
-                    </ul> --}}
+                   
                   </li>
 
                   <li><a href="#">Pages</a>
@@ -39,7 +30,7 @@
                   </li>
                   <li><a href="contact.html">Contact</a></li>
                 </ul>
-              </nav>
+              </nav> --}}
             </div>
             <!-- Header Right -->
             <div class="header-right">
@@ -66,8 +57,8 @@
   </header>
   <main>
 {{#unless status}}
-    <div class=" text-center mt-5">
-      <h2>Cart List</h2>
+    <div class=" text-center mt-3">
+      <h1>My Cart</h1>
     </div>
 
     <!--================Cart Area =================-->
@@ -90,7 +81,7 @@
                
                 {{#each products}}
 
-                <tr>
+                <tr id="cartRow{{this._id}}">
                   
                   <td>
                     <div class="media">
@@ -173,19 +164,23 @@ document.getElementById('allamount').textContent=Number(Allamount)+Number(price)
 
 function qtyDecrement(prodId){
   axios.get('/decrement/'+prodId).then((resp)=>{
+    console.log(resp)
+    if(resp.data.success){
     let quantity=document.getElementById("quantityBox"+prodId)
-   /* if(quantity.value=2){
-      alert('please remove the item');
-    }*/
+   
     quantity.value=Number(quantity.value)-1;
     
     let price=document.getElementById('price'+prodId).textContent
 document.getElementById('totalPrice'+prodId).textContent=Number(quantity.value)*Number(price)
 let Allamount=document.getElementById('allamount').textContent 
 document.getElementById('allamount').textContent=Number(Allamount)-Number(price)
+    }
+    else{
+document.getElementById('cartRow'+prodId).innerHTML=''
+    }
   })
 }
 </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
-</body>
+</body> 

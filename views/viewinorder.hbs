@@ -75,15 +75,23 @@
                     <h5>Category:{{this.products.category}}</h5>
                     <h5>Price:{{this.products.price}}</h5>
                     <h5>Address:{{this.address.address}}</h5>
+                    <h5>Order Date: {{this.orderDate}}</h5>
                     <h5>Order Status: {{this.orderStatus}}</h5>
                     
                     <div class="card_area">
                         
                     <div class="add_to_cart">
-                        {{#if this.cancel}}
+                        {{!-- {{#if this.cancel}}
                         {{else}}
                         <a href="/ordercancel/{{this._id}}" class="btn btn-dark">Order Cancel</a>
                         {{/if}}
+                        <a href="orderreturn/{{this._id}}" class="btn btn-dark ">Return Order</a> --}}
+                        {{#unless this.cancel}}
+                          <a href="/ordercancel/{{this._id}}" class="btn btn-primary cancel">Cancel Order</a>
+						  {{/unless}}
+						  {{#if this.returnstatus}}
+						  <a href="/orderreturn/{{this._id}}" class="btn btn-primary cancel">Return Order</a> 
+						 {{/if}}
                     </div>
                     </div>
                 </div>

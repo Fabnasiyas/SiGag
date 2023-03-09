@@ -24,11 +24,18 @@ router.get("/resendotp",usercontroller.resendotp)
 //  forgot Password
 router.get("/forgotpass", usercontroller.getforgotpass);
 router.post("/forgotpass", usercontroller.postforgotpass);
-router.post('/confirmpass',usercontroller.verifyotpinchangepass)
+// router.post('/confirmpass',usercontroller.verifyotpinchangepass)
 router.post('/otpinchangepass',usercontroller.postotpinpasschange)
+router.post("/setnewpassword",usercontroller.setnewpassword)
 router.get("/viewdetail/:id", usercontroller.getviewproduct);
-router.get("/hightolow",usercontroller.pricesorting)
-// router.use(userVerify);
+router.get("/hightolow",usercontroller.hightolow)
+router.get('/lowtohigh',usercontroller.lowtohigh)
+ router.get('/getbrandprod/:brand',usercontroller.getbrandproducts)
+ router.get('/shoppage',usercontroller.getshoppage)
+ router.get('/categorypageinshop/:catgy',usercontroller.getcatginshop)
+router.get('/categorypage/:catgy',usercontroller.categoryproducts)
+router.get("/viewallproducts",usercontroller.getallproducts)
+ router.use(userVerify);
 router.get("/cart",userVerify,usercontroller.getcart);
 
 router.get("/addtocart/:id", userVerify,usercontroller.getaddtocart);
@@ -39,12 +46,10 @@ router.get('/removefromcart/:id',usercontroller.removefromcart)
 
 
 
-router.get("/viewallproducts",usercontroller.getallproducts)
+
 router.get('/userprofile',usercontroller.getuserProfile)
 
-router.get('/shoppage',usercontroller.getshoppage)
- router.get('/categorypageinshop/:catgy',usercontroller.getcatginshop)
-router.get('/categorypage/:catgy',usercontroller.categoryproducts)
+
 router.get('/addaddress',usercontroller.getaddaddress)
 router.get('/addAddrsincheckout',usercontroller.getaddaddressincheckout)
 router.post('/addAddrsincheckout',usercontroller.postaddressincheckout)
@@ -59,6 +64,7 @@ router.get("/checkout",usercontroller.getcheckout)
 router.get("/orderlistpage",usercontroller.getorderlistpage)
 router.get('/vieworderdetails/:id',usercontroller.getvieworder)
 router.get('/ordercancel/:id',usercontroller.getordercancel)
+ router.get('/orderreturn/:id',usercontroller.getorderreturn)
  router.get('/wishlist',usercontroller.getwishlist)
  router.get('/towishlist/:id',usercontroller.towishlist)
  router.get('/deletefromwishlist/:id',usercontroller.deletefromwishlist)

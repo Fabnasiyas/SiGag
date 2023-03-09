@@ -7,11 +7,11 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <h1>Si<span style="color: #ff2020;">Gag</span></h1>
+                            <a href="/"><h1>Si<span style="color: #ff2020;">Gag</span></h1></a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
-                            <nav>
+                            {{!-- <nav>
                                 <ul id="navigation">
                                     <li><a href="/">Home</a></li>
                                     <li><a href="">shop</a></li>
@@ -26,7 +26,7 @@
                                     </li>
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
-                            </nav>
+                            </nav> --}}
                         </div>
                         <!-- Header Right -->
                         <div class="header-right">
@@ -136,7 +136,7 @@
 
                                                         </div>
 
-                                                        <input type="radio" value="{{item.id}}  " name="address"
+                                                        <input type="radio" value="{{this.id}} " name="address"
                                                             required>
                                                         </label>
                                                     </div>
@@ -210,7 +210,8 @@
                                                             <td colspan="3" class="text-right">After Applying Coupon
                                                             </td>
                                                             <td> <b>₹ {{discount.discountedPrice}}</b></td>
-                                                            <td> <b>₹ {{lastprice}}</b></td>
+                                                            <input type="hidden" name="discountedPrice" value="{{discount.discountedPrice}}">
+                                                            {{!-- <td> <b>₹ {{lastprice}}</b></td> --}}
                                                         </tr>
 
 
