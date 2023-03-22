@@ -1,0 +1,52 @@
+
+    <nav class="navbar navbar-light bg-dark ">
+    
+        <h1 style="color: white;">Admin Panel</h1>
+        <a href="/admin" style="color: white;">DashBoard</a>
+        <a href="/admin/user-list" style="color: white;">Users</a>
+        <a href="/admin/product-list" style="color: white;">Products</a>
+        <a href="/admin/category-list" style="color: white;">Category</a>
+        <a href="/admin/order-list" style="color: white;">Orders</a>
+        <a href="/admin/coupons" style="color: white;">Coupon</a>
+        <a href="/admin/banner" style="color: white;">Banner</a>
+        <a href="/admin/salesreport" style="color: white;">Sales Report</a>
+        <a href="/admin/logout" style="color: rgb(237, 18, 18);">Logout</a>
+        <a href=""></a>
+    <form class="form-inline mb-2" action="#" method="post" >
+      <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search here" aria-label="Search">
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </nav>
+<!-- <br>
+    <h2>Product Details</h2> -->
+    
+<nav class="navbar navbar-light bg-light mt-4">
+    <br>
+   
+    
+      <h1 class="text-center my-5">BANNERS</h1>
+      <form action="/admin/addbanner" method="get">
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Add Banner</button>
+    </form>
+  </nav>
+
+  <div class="mx-5">
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      
+      <th scope="col">Banner Name</th>
+      <th scope="col">Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each banner}}
+    <tr>
+      <td>{{this.name}}</td>
+       <td><img style="height:50px; width:50px;" src="/product-images/{{this.image.[0].filename}}" alt=""></td>
+    <td><a href="/admin/deletebanner/{{this._id}}" style="color: black;"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+  </div>

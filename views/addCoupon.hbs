@@ -1,37 +1,53 @@
+<nav class="navbar navbar-light bg-dark ">
 
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Add Coupon</p>
-  
-       
-        <form action="/admin/addcoupon" method="POST" >
+  <h1 style="color: white;">Admin Panel</h1>
+  <a href="" style="color: white;">DashBoard</a>
+  <a href="/admin/user-list" style="color: white;">Users</a>
+        <a href="/admin/product-list" style="color: white;">Products</a>
+        <a href="/admin/category-list" style="color: white;">Category</a>
+        <a href="/admin/order-list" style="color: white;">Orders</a>
+        <a href="/admin/coupons" style="color: white;">Coupon</a>
+        <a href="/admin/banner" style="color: white;">Banner</a>
+        <a href="/admin/salesreport" style="color: white;">Sales Report</a>
+        <a href="/admin/logout" style="color: rgb(237, 18, 18);">Logout</a>
+        <a href=""></a>
+
+</nav>
+<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Add Coupon</p>
+
+
+<form action="/admin/addcoupon" method="POST">
   <div class="container mt-5">
-     {{#if error}}
-        <p>Coupon Code Already exists</p>
-        {{/if}}
-         {{#if cerror}}
-        <p>Coupon Name Already exists</p>
-        {{/if}}
-       
-           <label for="">Coupon Name</label>
-          <input type="text" name="name" class="form-control" />
-          <label for="">Code</label>
-           <input type="text" name="code" class="form-control" />
-          <label for="">Minimum Amount for purchase</label>
-          <input type="number" name="minAmount" class="form-control" />
-          <label for="">Cashback</label>
-        <input type="number" name="cashback" class="form-control" />
+    {{#if error}}
+    <p>Coupon Code Already exists</p>
+    {{/if}}
+    {{#if cerror}}
+    <p>Coupon Name Already exists</p>
+    {{/if}}
+<div>
+  {{derror}}
+</div>
+    <label for="">Coupon Name</label>
+    <input type="text" name="name" class="form-control" />
+    <label for="">Code</label>
+    <input type="text" name="code" class="form-control" />
+    <label for="">Minimum Amount for purchase</label>
+    <input type="number" name="minAmount" class="form-control" />
+    <label for="">Cashback</label>
+    <input type="number" name="cashback" class="form-control" />
 
-         
-          
-          <label for="">Expiry</label>
-          <input type="date" name="expiry" class="form-control" />
-         
-         
 
-          <button type="submit" class="btn btn-success mt-5">Submit</button>
-        </form>  <div class="row">
-     
-        
-      </div>
-    </div>
-  </div>
 
+    <label for="">Expiry</label>
+    <input type="date" name="expiry" class="form-control" />
+
+
+
+    <button type="submit" class="btn btn-success mt-5">Submit</button>
+</form>
+<div class="row">
+
+
+</div>
+</div>
+</div>

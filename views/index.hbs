@@ -5,7 +5,6 @@
             <div class="preloader-inner position-relative">
                 <div class="preloader-circle"></div>
                 <div class="preloader-img pere-text">
-                    {{!-- <img src="assets/img/logo/logo.png" alt=""> --}}
                     <h2>SiGag</h2>
                 </div>
             </div>
@@ -20,8 +19,8 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            {{!-- <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a> --}}
-                            <h1>Si<span style="color: #ff2020;">Gag</span></h1>
+                            
+                            <h4>Si<span style="color: #ff2020;">Gag</span></h4>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
@@ -29,24 +28,7 @@
                                 <ul id="navigation">
                                     <li><a href="/">Home</a></li>
                                     <li><a href="/viewallproducts">shop</a></li>
-                                    <li><a href="">about</a></li>
-
-
-
-
-
-                                    {{!-- <li><a href="">Category</a>
-                                        <ul class="submenu">
-                                            {{#each categ}}
-                                            <li><a href="/categorypage/{{this.category}}">{{this.category}}</a></li>
-                                            {{/each}}
-                                        </ul>
-                                    </li> --}}
-
-
-
-                                          
-                                    <li><a href="#">Pages</a>
+                                   <li><a href="#">Pages</a>
                                         <ul class="submenu">
                                             {{#if user}}
                                             <li><a href='/logout'>logout</a></li>
@@ -54,11 +36,11 @@
                                             <li><a href='/user-login'>Login</a></li>
                                             {{/if}}
                                             <li><a href="/cart">Cart</a></li>
-                                            
                                         </ul>
                                     </li>
                                     <li><a href="">Contact</a></li>
                                 </ul>
+                                
                             </nav>
                         </div>
                         <!-- Header Right -->
@@ -75,7 +57,8 @@
                               
                                 {{else}}
                                 
-                                <li> <a style="color: black; " href="/user-login">
+                                <li> <a style="color: black; " href="/user-login"> 
+
                                         <h4>&nbsp;Login&nbsp;</h4>
                                     </a>
                                     <li> &nbsp;&nbsp;<a href="/user-login"><i style='font-size:24px;color: #ff2020;' class='far'>&#xf004;</i></a>&nbsp;&nbsp;&nbsp;</li>
@@ -186,43 +169,31 @@
                 </div>
             </div>
         </section>
-        <!--  New Product End -->
-        <!--? Gallery Area Start -->
-        <div class="gallery-area">
-            <div class="container-fluid p-0 fix">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-gallery mb-30">
-                            <div class="gallery-img big-img"
-                                style="background-image: url(assets/img/gallery/gallery1.png);"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-gallery mb-30">
-                            <div class="gallery-img big-img"
-                                style="background-image: url(assets/img/gallery/gallery2.png);"></div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-12">
-                        <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-6 col-sm-6">
-                                <div class="single-gallery mb-30">
-                                    <div class="gallery-img small-img"
-                                        style="background-image: url(assets/img/gallery/gallery3.png);"></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-12 col-lg-12  col-md-6 col-sm-6">
-                                <div class="single-gallery mb-30">
-                                    <div class="gallery-img small-img"
-                                        style="background-image: url(assets/img/gallery/gallery4.png);"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
+   <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    {{#each banner}}
+      <li data-target="#bannerCarousel" data-slide-to="{{@index}}" {{#if @first}}class="active"{{/if}}></li>
+    {{/each}}
+  </ol>
+  <div class="carousel-inner">
+    {{#each banner}}
+      <div class="carousel-item {{#if @first}}active{{/if}}">
+        <a href="/viewallproducts"><img class="d-block w-100 h-75" src="/product-images/{{this.image.[0].filename}}" alt="{{this.name}}"></a>
+      </div>
+    {{/each}}
+  </div>
+  <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+        
         <!-- Gallery Area End -->
         <!--? Popular Items Start -->
         <div class="popular-items section-padding30">

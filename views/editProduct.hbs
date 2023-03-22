@@ -1,20 +1,22 @@
-<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Product</p>
+<nav class="navbar navbar-light bg-dark ">
+    
+        <h1 style="color: white;">Admin Panel</h1>
+        <a href="/admin" style="color: white;">DashBoard</a>
+        <a href="/admin/user-list" style="color: white;">Users</a>
+        <a href="/admin/product-list" style="color: white;">Products</a>
+        <a href="/admin/category-list" style="color: white;">Category</a>
+        <a href="/admin/order-list" style="color: white;">Orders</a>
+        <a href="/admin/coupons" style="color: white;">Coupon</a>
+        <a href=""></a>
+        <a href="/admin/logout" style="color: white;">Logout</a>
+        <a href=""></a>
+     
+    </nav>
+<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Edit Product</p>
 
 
 <form action="/admin/edit-product/{{pro._id}}" method="POST" enctype="multipart/form-data">
   <div class="container mt-5">
-    {{!-- <input type="text" value="{{pro._id}}" name="_id" class="form-control invisible"> --}}
-    {{!-- <label for="">Image</label>
-    <input type="file" id="form3Example1c" name="Image" class="form-control" placeholder="image" required />
-    <input type="file" id="form3Example1c" name="gallery" class="form-control" placeholder="image" required multiple />
-    --}}
-
-    {{!-- <select name="Subcategory" id="Subcategory" class="form-control">
-      <option value=""></option>
-      <option value="Sports">Sports</option>
-      <option value="Casual">Casual</option>
-      <option value="Formal">Formal</option>
-    </select> --}}
     <label for="">Product Name</label>
     <input type="text" name="productname" class="form-control" value="{{pro.productname}}" />
     <label for="">Price</label>

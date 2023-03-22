@@ -33,7 +33,17 @@ let userSchema = new mongoose.Schema({
     wishlist:{
         type:Array,
         required:true
+    },
+    Wallet:{
+        type:Number,
+        default: 0
+    },
+    walletdetails: {
+        type: Array,
+        default:[]
+        
     }
+    
 
 })
 

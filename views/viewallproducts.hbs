@@ -18,51 +18,68 @@
                 <div class="container-fluid">
                     <div class="menu-wrapper">
                         <!-- Logo -->
-                        <div class="logo">
-                            <a href="/"><h1>Si<span style="color: #ff2020;">Gag</span></h1></a>
+                        <div>
+                            <a href="/">
+                                <h3>Si<span style="color: #ff2020;">Gag</span></h3>
+                            </a>
                         </div>
+                        <div class="main-menu d-none d-lg-block align-items-center ">
+                            <ul id="navigation">
+                                <li><a href="/">Home</a></li>
+
+
+                                <li><a href="#">Category</a>
+                                    <ul class="submenu">
+                                        {{#each categ}}
+                                        <li><a href="/categorypage/{{this.category}}">{{this.category}}</a></li>
+                                        {{/each}}
+                                    </ul>
+                                </li>
+                                <li><a href="">Filter</a>
+                                    <ul class="submenu">
+                                        {{#each brands}}
+                                        <li><a href="/getbrandprod/{{this._id}}">{{this._id}}</a></li>
+                                        {{/each}}
+                                    </ul>
+                                </li>
+                                <li><a href="">Sort</a>
+                                    <ul class="submenu">
+
+                                        <li><a href="/hightolow">Price High to Low</a></li>
+                                        <li><a href='/lowtohigh'>Price Low to High</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                <li>
+                                    <ul>
+
+                        </div>
+
                         <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
-                            <nav>                                                
-                                <ul id="navigation">  
-                                    <li><a href="/">Home</a></li>
-                                    
-                                    
-                                    <li><a href="#">Category</a>
-                                        <ul class="submenu">
-                                            {{#each categ}}  
-                                            <li><a href="/categorypage/{{this.category}}">{{this.category}}</a></li>
-                                            {{/each}}</ul>
+                        <div class="main-menu d-none d-lg-block align-items-center ">
+
+                            <nav>
+                                <ul id="navigation">
+
+                                    <li>
+                                        <div class="favorit-items ml-5">
+                                            <a href='/wishlist' style="color: #ee1111;"><span
+                                                    class="flaticon-heart"></span></a>
+                                        </div>
                                     </li>
-                                    <li><a href="">Filter</a>
-                                    <ul class="submenu">
-                                            {{#each brands}}
-                                            <li><a href="/getbrandprod/{{this._id}}">{{this._id}}</a></li>
-                                            {{/each}} </ul></li>
-                                    <li><a href="">Sort</a>
-                                    <ul class="submenu">
-                                            
-                                            <li><a href="/hightolow">Price High to Low</a></li>
-                                             <li><a href='/lowtohigh'>Price Low to High</a></li>
-                                             </ul></li>
-                                             
-                                            
+
+                                    <li> <a href="/userprofile"><span class="flaticon-user"
+                                                style="color: black;"></span></a></li>
+                                    <li><a href="/cart"><span class="flaticon-shopping-cart"
+                                                style="color: black;"></span></span></a> </li>
                                 </ul>
+                                </li>
+                                </li>
+
+                                {{!-- </ul> --}}
                             </nav>
                         </div>
-                        <!-- Header Right -->
-                        <div class="header-right">
-                            <ul>
-                                <li>
-                                    <div class="favorit-items">
-                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span class="flaticon-heart"></span></a>
-                                </div>
-                                </li>
-                                
-                                <li> <a href="/user-login"><span class="flaticon-user"></span></a></li>
-                                <li><a href="/cart"><span class="flaticon-shopping-cart"></span></a> </li>
-                            </ul>
-                        </div>
+
                     </div>
                     <!-- Mobile Menu -->
                     <div class="col-12">
@@ -73,149 +90,174 @@
         </div>
         <!-- Header End -->
     </header>
-     <div   class="my-5"><h1></h1></div> 
-  
+    <div class="my-5">
+        <h1></h1>
+    </div>
+
     <main>
-        <!-- Hero Area Start-->
-        
-        <!-- Hero Area End-->
-        <!-- Latest Products Start -->
-        
-             
-
-
-<div class="popular-items section-padding10">
+        <div class="popular-items section-padding10">
             <div class="container">
                 <!-- Section tittle -->
-                
+
                 <div class="row">
-{{#if status}}
- {{#each catgproducts}}
+                    {{#if status}}
+                    {{#each catgproducts}}
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-popular-items mb-50 text-center">
                             <div class="popular-img">
-                                <a href="/viewdetail/{{this._id}}"><img style="height: 400px; object-fit: contain;" src="/product-images/{{this.image.filename}}" alt=""></a>
+                                <a href="/viewdetail/{{this._id}}"><img style="height: 400px; object-fit: contain;"
+                                        src="/product-images/{{this.image.filename}}" alt=""></a>
                                 <div class="img-cap">
-                                   <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a>
+                                    {{!-- <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a> --}}
+                                    <button class="btn btn-dark" onclick="addToCart('{{this._id}}')">Add to cart</button>
+
                                 </div>
-                                 <div class="favorit-items">
-                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span class="flaticon-heart"></span></a>
+                                <div class="favorit-items">
+                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span
+                                            class="flaticon-heart"></span></a>
                                 </div>
                             </div>
                             <div class="popular-caption">
                                 <h3><a href="">{{this.productname}}</a></h3>
+                                <h4>Category:{{this.category}}</h4>
+                                <h4>Brand:{{this.brand}}</h4>
                                 <span>MRP : {{this.price}}</span>
                             </div>
+
                         </div>
                     </div>
-                     {{/each }}
-{{/if}}
+                    {{/each }}
+                    {{/if}}
 
                     {{#each allproducts}}
+
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-popular-items mb-50 text-center">
                             <div class="popular-img">
-                                <a href="/viewdetail/{{this._id}}"><img style="height: 400px; object-fit: contain;" src="/product-images/{{this.image.filename}}" alt=""></a>
+                                <a href="/viewdetail/{{this._id}}"><img style="height: 400px; object-fit: contain;"
+                                        src="/product-images/{{this.image.filename}}" alt=""></a>
                                 <div class="img-cap">
-                                   <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a>
-                                </div>
-                                 <div class="favorit-items">
-                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span class="flaticon-heart"></span></a>
+                                    {{!-- <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a> --}}
+                               
+                                                       <button class="btn btn-dark" onclick="addToCart('{{this._id}}')">Add to cart</button>
+ </div>
+                                <div class="favorit-items">
+                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span
+                                            class="flaticon-heart"></span></a>
                                 </div>
                             </div>
                             <div class="popular-caption">
                                 <h3><a href="">{{this.productname}}</a></h3>
+                                <h5>Category:{{this.category}}</h5>
                                 <span>MRP : {{this.price}}</span>
                             </div>
+
                         </div>
                     </div>
-                     {{/each }}
-                     {{#if pstatuss}}
+                    {{/each }}
+                    {{#if pstatuss}}
                     {{#each priceprod}}
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-popular-items mb-50 text-center">
                             <div class="popular-img">
-                               <a href="/viewdetail/{{this._id}}"> <img style="height: 400px; object-fit: contain;" src="/product-images/{{this.image.filename}}" alt=""></a>
+                                <a href="/viewdetail/{{this._id}}"> <img style="height: 400px; object-fit: contain;"
+                                        src="/product-images/{{this.image.filename}}" alt=""></a>
                                 <div class="img-cap">
-                                   <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a>
+                                    {{!-- <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a> --}}
+                                                        <button class="btn btn-dark" onclick="addToCart('{{this._id}}')">Add to cart</button>
+
                                 </div>
-                               <div class="favorit-items">
-                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span class="flaticon-heart"></span></a>
+                                <div class="favorit-items">
+                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span
+                                            class="flaticon-heart"></span></a>
                                 </div>
                             </div>
                             <div class="popular-caption">
                                 <h3><a href="">{{this.productname}}</a></h3>
+                                <h5>Brand:{{this.brand}}</h5>
                                 <span>MRP : {{this.price}}</span>
                             </div>
                         </div>
                     </div>
-                     {{/each }}
-                     {{/if}}
-                     {{#if pstatus}}
+                    {{/each }}
+                    {{/if}}
+                    {{#if pstatus}}
                     {{#each pricepro}}
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-popular-items mb-50 text-center">
                             <div class="popular-img">
-                               <a href="/viewdetail/{{this._id}}"> <img style="height: 400px; object-fit: contain;" src="/product-images/{{this.image.filename}}" alt=""></a>
+                                <a href="/viewdetail/{{this._id}}"> <img style="height: 400px; object-fit: contain;"
+                                        src="/product-images/{{this.image.filename}}" alt=""></a>
                                 <div class="img-cap">
-                                   <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a>
+                                    {{!-- <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a> --}}
+                                                        <button class="btn btn-dark" onclick="addToCart('{{this._id}}')">Add to cart</button>
+
                                 </div>
-                               <div class="favorit-items">
-                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span class="flaticon-heart"></span></a>
+                                <div class="favorit-items">
+                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span
+                                            class="flaticon-heart"></span></a>
                                 </div>
                             </div>
                             <div class="popular-caption">
                                 <h3><a href="">{{this.productname}}</a></h3>
+                                <h5>Brand:{{this.brand}}</h5>
                                 <span>MRP : {{this.price}}</span>
                             </div>
                         </div>
                     </div>
-                     {{/each }}
-                     {{/if}}
-                     {{#if brandstatus}}
+                    {{/each }}
+                    {{/if}}
+                    {{#if brandstatus}}
                     {{#each brandproduct}}
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6">
                         <div class="single-popular-items mb-50 text-center">
                             <div class="popular-img">
-                               <a href="/viewdetail/{{this._id}}"> <img style="height: 400px; object-fit: contain;" src="/product-images/{{this.image.filename}}" alt=""></a>
+                                <a href="/viewdetail/{{this._id}}"> <img style="height: 400px; object-fit: contain;"
+                                        src="/product-images/{{this.image.filename}}" alt=""></a>
                                 <div class="img-cap">
-                                   <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a>
+                                    {{!-- <a href="/addtocart/{{this._id}}"> <span>Add To Cart</span></a> --}}
+                                                        <button class="btn btn-dark" onclick="addToCart('{{this._id}}')">Add to cart</button>
+
                                 </div>
-                               <div class="favorit-items">
-                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span class="flaticon-heart"></span></a>
+                                <div class="favorit-items">
+                                    <a href="/towishlist/{{this._id}}" style="color: #ee1111;"><span
+                                            class="flaticon-heart"></span></a>
                                 </div>
                             </div>
                             <div class="popular-caption">
                                 <h3><a href="">{{this.productname}}</a></h3>
+                                <h5>Brand:{{this.brand}}</h5>
                                 <span>MRP : {{this.price}}</span>
                             </div>
                         </div>
                     </div>
-                     {{/each }}
-                     {{/if}}
-                    
+                    {{/each }}
+                    {{/if}}
+
                 </div>
                 <!-- Button -->
                 <div class="col-lg-12">
-                    
-						<nav aria-label="Page navigation example">
-							<ul class="pagination" style="justify-content: center;">
-								
-				 {{#each pagination}}
-								<li class="page-item"><a class="page-link" href="/viewallproducts/?page={{inc @index}}" style="color: black;">{{inc @index}}</a></li>
-								{{/each}}				
-								
+
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination" style="justify-content: center;">
+                            {{#each pagination}}
+                            <li class="page-item"><a class="page-link" href="/viewallproducts/?page={{inc @index}}"
+                                    style="color: black;">{{inc @index}}</a></li>
+                            {{/each}}
+                </div>
             </div>
+            </ul>
+            </nav>
         </div>
-
-
-
-								
-							</ul>
-							</nav>
-						</div>
         </section>
-        
     </main>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script>
+                function addToCart(proId){
+                    axios.get('/addtocart/'+proId).then((resp)=>{
+                        console.log(resp)
+                    })
+                }
+                
+            </script>
 </body>
-        

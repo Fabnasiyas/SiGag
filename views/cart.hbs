@@ -7,20 +7,17 @@
           <div class="menu-wrapper">
             <!-- Logo -->
             <div class="logo">
-              <a href="/"><h1>Si<span style="color: #ff2020;">Gag</span></h1></a>
+              <a href="/">
+                <h4>Si<span style="color: #ff2020;">Gag</span></h4>
+              </a>
             </div>
             <!-- Main-menu -->
             <div class="main-menu d-none d-lg-block">
-              {{!-- <nav>
+              <nav>
                 <ul id="navigation">
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="shop.html">shop</a></li>
-                  <li><a href="about.html">about</a></li>
-                  
-                  <li><a href="">Category</a>
-                   
-                  </li>
-
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/viewallproducts">shop</a></li>
+                  <li><a href="">about</a></li>
                   <li><a href="#">Pages</a>
                     <ul class="submenu">
                       <li><a href='/user-login'>Login</a></li>
@@ -28,20 +25,15 @@
 
                     </ul>
                   </li>
-                  <li><a href="contact.html">Contact</a></li>
                 </ul>
-              </nav> --}}
+              </nav>
             </div>
             <!-- Header Right -->
             <div class="header-right">
               <ul>
-                <li>
-                  <div class="nav-search search-switch">
-                    <span class="flaticon-search"></span>
-                  </div>
-                </li>
-                
-                <li> <a href="/user-login"><span class="flaticon-user"></span></a></li>
+                <a href="/wishlist"><i style='font-size:24px;color: #ff2020;'
+                    class='far'>&#xf004;</i></a>&nbsp;&nbsp;&nbsp;
+                <li> <a href="/userprofile"><span class="flaticon-user"></span></a></li>
                 <li><a href=""><span class="flaticon-shopping-cart"></span></a> </li>
               </ul>
             </div>
@@ -56,14 +48,12 @@
     <!-- Header End -->
   </header>
   <main>
-{{#unless status}}
-    <div class=" text-center mt-3">
-      <h1>My Cart</h1>
-    </div>
-
-    <!--================Cart Area =================-->
-    <section class="cart_area section_padding" style="padding-top: 100px;">
-      <div class="container">
+    {{#unless status}}
+    <div class=" text-center">
+      <h1 class="hh" style="padding-bottom: 80px;">My Cart</h1>
+    </div> <!--================Cart Area =================-->
+    <section class="cart_area  sc1 ">
+      <div class="container  sec1">
         <div class="cart_inner">
           <div class="table-responsive">
             <table class="table">
@@ -71,47 +61,50 @@
                 <tr>
                   <th scope="col" style="color: black;"><b>Product</b> </th>
                   <th scope="col" style="color: black;"><b>Price</b></th>
-                  
-                  <th scope="col" style="color: black; padding-left: 70px;"  ><b>Quantity</b></th>
+
+                  <th scope="col" style="color: black; padding-left: 70px;"><b>Quantity</b></th>
                   {{!-- <th scope="col" style="color: black;"><b>Total</b></th> --}}
                   <th scope="col" style="color: black;"><b>Option</b></th>
                 </tr>
               </thead>
               <tbody>
-               
+
                 {{#each products}}
 
                 <tr id="cartRow{{this._id}}">
-                  
+
                   <td>
                     <div class="media">
                       <div class="d-flex">
-                        <img src="/product-images/{{this.image.filename}}" alt="" />
+                        <img class="im1" src="/product-images/{{this.image.filename}}" alt="" /><br>
+
                       </div>
+
                       <div class="media-body">
                         <p style="color: black;">{{this.productname}} </p>
                       </div>
                     </div>
+                    <div style="color: #ff2020; font-weight: bold;" id="stat{{this._id}}"></div>
                   </td>
                   <td>
-                    <h5 id="price{{this._id}}" style="color: black;" >{{this.price}}</h5>
+                    <h5 id="price{{this._id}}" style="color: black;">{{this.price}}</h5>
                   </td>
                   <td>
-                  
-                    {{!-- <a href="/decrement/{{this._id}}" class="btn "> - </a>
-                       <input type="text" style="border-style: none; width:35px; color: black; align-items: center;" value="{{this.quantity}}" readonly>
-        
-                    <a href="/increment/{{this._id}}" class="btn "> + </a>               --}}
-                      {{message}}            
-                     <button class=" btn mx-2 " onclick="qtyDecrement('{{this._id}}')">-</button>
-                     <input id="quantityBox{{this._id}}" value="{{this.quantity}}" style="width: 20px; border-style: none;" readonly>
-                     <button class=" btn mx-2" onclick="changeQuantity('{{this._id}}')">+</button>
+                    {{message}}
+                    <button class="  mx-2 btn-primary" onclick="qtyDecrement('{{this._id}}')"> -</button>
+                    <input id="quantityBox{{this._id}}" value="{{this.quantity}}"
+                      style="width: 20px; border-style: none;" readonly>
+                    <button class=" mx-2 btn-primary  " onclick="changeQuantity('{{this._id}}')">+</button>
                   </td>
                   <td>
                     <h5 id="totalPrice{{this._id}}" style="color: black;">{{this.totalprice}}</h5>
                   </td>
 
-                  <td><a href="/removefromcart/{{this._id}}" class="btn">Remove</a></td>
+                  {{!-- <td><a href="/removefromcart/{{this._id}}" class="btn">Remove</a></td> --}}
+
+                  <td><button
+                      onclick="if( confirm(' Are you sure toRemove this From Cart?')){window.location.href='/removefromcart/{{this._id}}' }"
+                      class="oval-btn  btn-success">Remove</button></td>
                 </tr>
 
                 {{/each}}
@@ -122,65 +115,143 @@
                     <h5 style="color: black;"><b>All Total</b> </h5>
                   </td>
                   <td>
-                    <h5  style="color: black;"><b>RS:</b><b id="allamount">{{Allamount}}</b> </h5>
+                    <h5 style="color: black;"><b>RS:</b><b id="allamount">{{Allamount}}</b> </h5>
                   </td>
                 </tr>
 
               </tbody>
             </table>
-            <div class="checkout_btn_inner float-right">
+            {{!-- <div class="checkout_btn_inner float-right">
               <a class="btn_1" href="/viewallproducts">Continue Shopping</a>
               <a class="btn_1 checkout_btn_1" href="/checkout">Proceed to checkout</a>
+            </div> --}}
+          </div>
+        </div>
+        {{!-- <div class="checkout_btn_inner float-right">
+          <a class="btn_1 b1" href="/viewallproducts">Continue Shopping</a>
+          <a class="btn_1  b1 checkout_btn_1" href="/checkout">Proceed to checkout</a>
+        </div> --}}
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <div class="checkout_btn_inner d-flex justify-content-end">
+                <button class=" btn-primary mr-3 oval-btn"><a class=" mr-3" href="/viewallproducts"
+                    style="text-decoration: none;">Continue Shopping</a></button>
+                <button class=" btn-success oval-btn"><a class="checkout_btn_1" href="/checkout">Proceed to checkout</a>
+                </button>
+              </div>
             </div>
           </div>
         </div>
+
         {{else}}
-         {{!-- <b><h1 style="color: red;"> {{message}}</h1></b> --}}
-         <div class="text-center mt-5" >
-      <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-2130356-1800917.png" alt="Empty Cart" style="width: 50%;">
-      <h2 style="color: #ff2020;">Your cart is empty!</h2>
-      {{/unless}}
-       
-         
-       
-     
+
+        <div class="text-center mt-5">
+          <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-2130356-1800917.png"
+            alt="Empty Cart" style="max-width: 100%; height: auto;">
+          <h2 style="color: #ff2020; font-size: 2rem; margin-top: 1rem;">Your cart is empty!</h2>
+        </div>
+
+        <style>
+          @media (max-width: 767px) {
+            h2 {
+              font-size: 1.5rem;
+            }
+          }
+
+          @media (min-width: 768px) and (max-width: 991px) {
+            h2 {
+              font-size: 1.8rem;
+            }
+          }
+
+          @media (min-width: 992px) {
+            h2 {
+              font-size: 2rem;
+            }
+          }
+        </style>
+
+        {{/unless}}
     </section>
 
   </main>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-            
-<script>
-function changeQuantity(prodId){
-axios.get('/increment/'+prodId).then((resp)=>{
-  console.log(resp)
-let quantity= document.getElementById("quantityBox"+prodId)
-quantity.value=Number(quantity.value)+1;
-let price=document.getElementById('price'+prodId).textContent 
-document.getElementById('totalPrice'+prodId).textContent=Number(quantity.value)*Number(price)
-let Allamount=document.getElementById('allamount').textContent 
-document.getElementById('allamount').textContent=Number(Allamount)+Number(price)
-})
-}
 
-function qtyDecrement(prodId){
-  axios.get('/decrement/'+prodId).then((resp)=>{
-    console.log(resp)
-    if(resp.data.success){
-    let quantity=document.getElementById("quantityBox"+prodId)
-   
-    quantity.value=Number(quantity.value)-1;
-    
-    let price=document.getElementById('price'+prodId).textContent
-document.getElementById('totalPrice'+prodId).textContent=Number(quantity.value)*Number(price)
-let Allamount=document.getElementById('allamount').textContent 
-document.getElementById('allamount').textContent=Number(Allamount)-Number(price)
+  <script>
+    function changeQuantity(prodId) {
+      axios.get('/increment/' + prodId).then((resp) => {
+        console.log(resp)
+        if (resp.data.success) {
+          let quantity = document.getElementById("quantityBox" + prodId)
+          quantity.value = Number(quantity.value) + 1;
+          let price = document.getElementById('price' + prodId).textContent
+          document.getElementById('totalPrice' + prodId).textContent = Number(quantity.value) * Number(price)
+          let Allamount = document.getElementById('allamount').textContent
+          document.getElementById('allamount').textContent = Number(Allamount) + Number(price)
+
+        }
+        else {
+          document.getElementById("quantityBox" + prodId).value = resp.data.qty
+          document.getElementById('stat' + prodId).innerText = "out of stock"
+        }
+
+      })
     }
-    else{
-document.getElementById('cartRow'+prodId).innerHTML=''
+
+    function qtyDecrement(prodId) {
+      axios.get('/decrement/' + prodId).then((resp) => {
+        console.log(resp)
+        if (resp.data.success) {
+          let quantity = document.getElementById("quantityBox" + prodId)
+
+          quantity.value = Number(quantity.value) - 1;
+
+          let price = document.getElementById('price' + prodId).textContent
+          document.getElementById('totalPrice' + prodId).textContent = Number(quantity.value) * Number(price)
+          let Allamount = document.getElementById('allamount').textContent
+          document.getElementById('allamount').textContent = Number(Allamount) - Number(price)
+          document.getElementById('stat' + prodId).innerText = ""
+        }
+        else {
+          document.getElementById('cartRow' + prodId).innerHTML = ''
+          document.getElementById('stat' + prodId).innerText = ""
+        }
+      })
     }
-  })
-}
-</script>
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <style>
+    .oval-btn {
+      border-radius: 50px;
+      padding: 10px 20px;
+    }
 
-</body> 
+    @media (max-width: 576px) {
+      .oval-btn {
+        font-size: 0.7rem;
+        padding: 8px 16px;
+        border-radius: 25px;
+      }
+
+      .im1 {
+        height: 100px;
+        width: 100px;
+      }
+
+      body {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .sc1 {
+        width: 100%;
+      }
+
+      .hh {
+        padding-top: 50px;
+        font-size: 30px;
+      }
+    }
+  </style>
+</body>

@@ -7,6 +7,7 @@ const adminModel=require('../models/adminModel');
 const multer = require('multer');
 const verifyAdmin=require('../middleware/adminVerify');
 const usercontroller = require('../controllers/usercontroller');
+const admincontroller = require('../controllers/admincontroller');
 const router=express.Router();
 
   
@@ -30,7 +31,8 @@ const router=express.Router();
    router.get('/listproduct/:id',adminController.listProduct);
    router.get('/editproduct/:id',upload,adminController.geteditProduct)
    router.post('/edit-product/:id',upload,adminController.posteditProduct)
-   router.get('/search',adminController.getsearchuser)
+   router.post('/userList',adminController.getsearchuser)
+   router.post('/producrsearch',upload,adminController.searchproduct)
    // Category Managment
   
    router.get('/category-list',adminController.getcategory);
@@ -40,7 +42,7 @@ const router=express.Router();
    router.get('/unblockcategory/:id',adminController.unblockcategory);
    
    router.get('/order-list',adminController.getorderlist);
-   router.get('/')
+   
    router.get('/coupons',adminController.getcoupon)
    router.get('/addcoupon',adminController.getaddcoupon)
    router.post('/addcoupon',adminController.postaddcoupon)
@@ -49,15 +51,19 @@ const router=express.Router();
    //  router.post('/deletecoupon/:id',adminController.deletecoupon)
    router.get('/unlistcoupon/:id',adminController.unlistcoupon);
    router.get('/listcoupon/:id',adminController.listcoupon);
+   router.post('/couponsearch',adminController.couponsearch)
    // router.get('/searchcategory',adminController.searchcategory)
-
-
+router.get('/banner',adminController.getbanner)
+router.get('/addbanner',upload,adminController.getaddbanner);
+router.post('/savebanner',upload,admincontroller.postaddbanner);
+router.get('/deletebanner/:id',admincontroller.deletebanner)
 router.get('/order-pending/:id',adminController.getorderpending)
 router.get("/order-cancel/:id",adminController.getordercancel)
 router.get('/order-shipped/:id',adminController.getordershipped)
 router.get('/admin/order-return/:id',adminController.getorderreturn)
 router.get('/order-delivered/:id',adminController.getorderdelivered)
-   router.get('/logout',adminController.adminlogut)
+router.get('/salesreport',adminController.getsalesreport)
+router.get('/logout',adminController.adminlogut)
 
 
 module.exports = router;

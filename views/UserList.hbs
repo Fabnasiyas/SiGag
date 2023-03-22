@@ -1,42 +1,40 @@
 <nav class="navbar navbar-light bg-dark">
 
   <h1 style="color: white;">Admin Panel</h1>
-  <a href="" style="color: white;">DashBoard</a>
+  <a href="/admin" style="color: white;">DashBoard</a>
   <a href="/admin/user-list" style="color: white;">Users</a>
-  <a href="/admin/product-list" style="color: white;">Products</a>
-  <a href="/admin/category-list" style="color: white;">Category</a>
-  <a href="/admin/order-list" style="color: white;">Orders</a>
-  <a href="/admin/coupons" style="color: white;">Coupon</a>
-  <a href=""></a>
-  <a href="/admin/logout" style="color: white;">Logout</a>
-  <a href=""></a>
+        <a href="/admin/product-list" style="color: white;">Products</a>
+        <a href="/admin/category-list" style="color: white;">Category</a>
+        <a href="/admin/order-list" style="color: white;">Orders</a>
+        <a href="/admin/coupons" style="color: white;">Coupon</a>
+        <a href="/admin/banner" style="color: white;">Banner</a>
+        <a href="/admin/salesreport" style="color: white;">Sales Report</a>
+        <a href="/admin/logout" style="color: rgb(237, 18, 18);">Logout</a>
+        <a href=""></a>
+<form class="form-inline" action="/admin/userList" method="post">
+  <input
+    class="form-control mr-sm-2"
+    type="search"
+    name="name"
+    placeholder="Search here"
+    aria-label="Search"
+  />
+  <button
+    class="btn btn-outline-dark my-2 my-sm-0"
+    type="submit"
+  >Search</button>
+</form>
 
 </nav>
 <br />
 
-<nav class="navbar navbar-light bg-light">
-  <br />
+<h1 class="text-center my-5">USER LIST</h1>
 
-  <form class="form-inline" action="#" method="post">
-    <input
-      class="form-control mr-sm-2"
-      type="search"
-      name="name"
-      placeholder="Search here"
-      aria-label="Search"
-    />
-    <a href=""><button
-        class="btn btn-outline-dark my-2 my-sm-0"
-        type="submit"
-      >Search</button></a>
-  </form>
-
-</nav>
-
-<table class="table ml-5" id="usertable">
+<div class="mx-5">
+  <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Name</th>
+     <th scope="col">Name</th>
       <th scope="col">Phone No</th>
       <th scope="col">Email</th>
       <th scope="col">Options</th>
@@ -66,6 +64,6 @@
         {{/if}}
       </tr>
     {{/each}}
-
   </tbody>
 </table>
+</div>

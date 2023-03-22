@@ -15,7 +15,10 @@ const app = express();
 dbConnect()
 app.use(express.json());
 // app.use(morgan('dev'))
-
+app.use((req,res,next)=>{
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate')
+  next();
+})
 app.use(session({
   secret:'secret',
   cookie:{maxAge:600000},
@@ -37,10 +40,15 @@ hbs.registerHelper('inc',function(value,options){
   return parseInt(value)+1;
 });
 
+hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+  return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+});
 app.use('/',userRouter);
 app.use('/admin',adminRouter)
 
-
+app.all('*',(req,res)=>{
+  res.render('404');
+})
 app.listen(4000, () => {
   console.log("http://localhost:4000");
 });

@@ -7,7 +7,9 @@
                     <div class="menu-wrapper">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href="/"><h1>Si<span style="color: #ff2020;">Gag</span></h1></a>
+                            <a href="/">
+                                <h1>Si<span style="color: #ff2020;">Gag</span></h1>
+                            </a>
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
@@ -37,7 +39,7 @@
                                     </div>
                                 </li>
 
-                                <li> <a href="/user-login"><span class="flaticon-user"></span></a></li>
+                                <li> <a href="/userprofile"><span class="flaticon-user"></span></a></li>
                                 <li><a href="/cart"><span class="flaticon-shopping-cart"></span></a> </li>
                             </ul>
                         </div>
@@ -64,21 +66,15 @@
                         <div class="page section-header text-center">
                             <div class="page-title">
                                 <div class="wrapper">
-                                    <h1 class="page-width">Checkout</h1>
+                                    <h1 class="page-width ch">Checkout</h1>
                                 </div>
                             </div>
                         </div>
                         <!--End Page Title-->
 
-                        <div class="container">
+                        {{!-- <div class="container">
                             <div class="row">
-
-
-
-
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
-
-
                                     <form action="/couponincheckout" method="post">
                                         <span id="errMsg"
                                             class="gl-text u-s-m-b-16 font-weight-bold text-danger">Available
@@ -98,54 +94,98 @@
                                             </div>
                                         </div>
                                     </form>
-                                    
-
-
-
                                 </div>
-
-
                             </div>
 
+                            <p id="msg"></p>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
+                                
+                                <input type="text" value="{{user.Wallet}}">
+                                <form action="" method="post">
+                                    <span id="errMsg" class="gl-text u-s-m-b-16 font-weight-bold text-danger">My
+                                        Wallet</span>
+                                    <div class="u-s-m-b-16">
+                                        <div class="u-s-m-b-15">
+                                            <label for="coupon"></label>
+                                            <input class="input-text input-text--primary-style text-center" type="text"
+                                                id="walletBox" name="wallet" placeholder="enter the wallet amount" />
+                                            <input type="hidden" name="userId" value="{{user._id}}" />
+                                        </div>
+                                        <div class="u-s-m-b-15">
+                                            <button class="btn btn-primary mt-2" onclick="applyWallet()"
+                                                type="button">APPLY</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div> --}}
+                        <div class="">
+                           <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
+                                    <form action="/couponincheckout" method="post">
+                                        <span id="errMsg"
+                                            class="gl-text u-s-m-b-16 font-weight-bold text-danger">Available
+                                            coupons</span>
+                                        <div class="u-s-m-b-16">
+                                            <div class="u-s-m-b-15">
+
+                                                <label for="coupon"></label>
+
+                                                <input class="input-text input-text--primary-style text-center"
+                                                    type="text" id="coupon" name="coupon" placeholder="Coupon Code" />
+                                                <input type="hidden" name="userId" value="{{user._id}}" />
+                                            </div>
+                                            <div class="u-s-m-b-15">
+
+                                                <button class="btn btn-primary mt-2" type="submit">APPLY</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div> 
+                        </div>
+                        <p id="msg"></p>
 
 
-                                        <form action="/checkout" method="post">
+                        <form action="/checkout" method="post">
                             <div class="row billing-fields">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 sm-margin-30px-bottom">
                                     <div class="create-ac-content bg-light-gray padding-20px-all">
                                         <h4
                                             style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-weight: bold; font-size: 15px; color: rgb(212, 83, 83); text-transform: capitalize;">
                                             select an address</h4>
-                                            <div class="row">
-                                                {{#each address}}
-                                                <div class="col-md-6">
-                                                    <div class="address-box"
-                                                        style="border: 1px solid rgb(51, 51, 51);margin-bottom: 12px; padding: 10px; border-radius: 10px; font-size: 14px;">
+                                        <div class="row">
+                                            {{#each address}}
+                                            <div class="col-md-6">
+                                                <div class="address-box"
+                                                    style="border: 1px solid rgb(51, 51, 51);margin-bottom: 12px; padding: 10px; border-radius: 10px; font-size: 14px;">
 
 
 
 
-                                                        <div class="manage-address"
-                                                            style="display: flex; flex-direction: column;">
+                                                    <div class="manage-address"
+                                                        style="display: flex; flex-direction: column;">
 
 
-                                                            <b>{{this.name}}</b>
-                                                            <b>{{this.mobile}} </b>
-                                                            <b>{{this.address}}</b>
-                                                            <b>PIN:{{this.pincode}}</b>
+                                                        <b>{{this.name}}</b>
+                                                        <b>{{this.mobile}} </b>
+                                                        <b>{{this.address}}</b>
+                                                        <b>PIN:{{this.pincode}}</b>
 
-                                                        </div>
-
-                                                        <input type="radio" value="{{this.id}} " name="address"
-                                                            required>
-                                                        </label>
                                                     </div>
-                                                </div>
-                                                {{/each}}
 
+                                                    <input type="radio" value="{{this.id}} " name="address" required>
+                                                    </label>
+                                                </div>
                                             </div>
-                                            
-<a href="/addAddrsincheckout" class="btn btn-dark rounded-4 ">Add Address</a>
+                                            {{/each}}
+
+                                        </div>
+
+                                        <a href="/addAddrsincheckout" class="btn btn-dark rounded-4 ">Add
+                                            Address</a>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
@@ -165,18 +205,16 @@
                                                     </thead>
                                                     <tbody>
                                                         {{#each products}}
-
                                                         <tr>
                                                             <td class="text-left">{{this.productname}} </td>
                                                             <td>₹{{price}}</td>
                                                             <td>{{this.quantity}}</td>
                                                             <td>₹{{this.totalprice}}</td>
                                                         </tr>
-
                                                         {{/each}}
 
                                                     </tbody>
-                          <input type="hidden" name="allAmount" value="{{Allamount}}">
+                                                    <input type="hidden" name="allAmount" value="{{Allamount}}">
                                                     <tfoot class="font-weight-600">
                                                         <tr>
                                                             <td colspan="3" class="text-right">Shipping </td>
@@ -184,33 +222,28 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="3" class="text-right">Total</td>
-                                                            
+
                                                             <td>{{Allamount}} </td>
                                                         </tr>
-
-
-
-
-
                                                         <tr>
-                                                            <td colspan="3" class="text-right">coupon status</td>
-                                                            <td> <b>{{message}} </b></td>
+                                                            <td colspan="3" class="text-right">Wallet</td>
+                                                            <td id="walletAmount">₹ :0</td>
 
                                                         </tr>
-
-
-
                                                         <tr>
                                                             <td colspan="3" class="text-right">Discount</td>
                                                             <td> <b style="color: rgb(108, 214, 143);">₹{{discount.cashback}}
                                                                 </b></td>
-                                                        </tr>
-
                                                         <tr>
-                                                            <td colspan="3" class="text-right">After Applying Coupon
+                                                            <td colspan="3" class="text-right">Payable Amount After
+                                                                applying coupon/wallet
                                                             </td>
-                                                            <td> <b>₹ {{discount.discountedPrice}}</b></td>
-                                                            <input type="hidden" name="discountedPrice" value="{{discount.discountedPrice}}">
+                                                            <td><b>₹ :<b
+                                                                        id="amountPayable">{{discount.discountedPrice}}</b></b>
+                                                            </td>
+                                                            <input type="hidden" id="finalPayable"
+                                                                name="discountedPrice"
+                                                                value="{{discount.discountedPrice}}">
                                                             {{!-- <td> <b>₹ {{lastprice}}</b></td> --}}
                                                         </tr>
 
@@ -220,7 +253,7 @@
                                             </div>
                                         </div>
 
-                                        <hr/>
+                                        <hr />
 
                                         <div class="your-payment">
                                             <h2 class="payment-title mb-3">payment method</h2>
@@ -234,7 +267,8 @@
                                                                 <input type="radio" id="cod" name="payment" value="cod"
                                                                     required>
                                                                 <a class="card-link" data-toggle="collapse"
-                                                                    href="#collapseOne" style="color: black;">Cash On
+                                                                    href="#collapseOne" style="color: black;">Cash
+                                                                    On
                                                                     Delivery </a>
                                                             </div>
 
@@ -243,9 +277,11 @@
                                                             <div id="collapseOne" class="collapse"
                                                                 data-parent="#accordion">
                                                                 <div class="card-body">
-                                                                    <p class="no-margin font-15">payment method in which
+                                                                    <p class="no-margin font-15">payment method in
+                                                                        which
                                                                         customers don't pay for mailed goods until
-                                                                        they've received and decided to keep them.</p>
+                                                                        they've received and decided to keep them.
+                                                                    </p>
 
                                                                 </div>
                                                             </div>
@@ -263,12 +299,16 @@
                                                             <div id="collapseTwo" class="collapse"
                                                                 data-parent="#accordion">
                                                                 <div class="card-body">
-                                                                    <p class="no-margin font-15">Online payment allows
-                                                                        you to pay money via the internet. Buyers will
+                                                                    <p class="no-margin font-15">Online payment
+                                                                        allows
+                                                                        you to pay money via the internet. Buyers
+                                                                        will
                                                                         use this type of payment when they purchase
-                                                                        goods online or offline. They can use different
+                                                                        goods online or offline. They can use
+                                                                        different
                                                                         types of online payment methods, including
-                                                                        debit/credit cards, wire transfers, net banking,
+                                                                        debit/credit cards, wire transfers, net
+                                                                        banking,
                                                                         and digital wallets.</p>
                                                                 </div>
                                                             </div>
@@ -285,14 +325,44 @@
                                     </div>
                                 </div>
                             </div>
-                                </form>
-                        </div>
-
+                        </form>
                     </div>
+
                 </div>
             </div>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        function applyWallet() {
+            document.getElementById('msg').textContent = ''
+            let amount = document.getElementById('walletBox').value
+            let payable = parseInt(document.getElementById('amountPayable').textContent)
+            axios.post('/walletincheckout', { amount, payable }).then((result) => {
+                console.log(result, 'asdfghjk')
+                if (result.data.success) {
+                    document.getElementById('walletAmount').textContent = amount
+                    document.getElementById('amountPayable').textContent = result.data.payable
+                    document.getElementById('finalPayable').value = result.data.payable
+                }
+                else {
+                    document.getElementById('msg').textContent = result.data.message;
 
+                }
 
+            })
+        }
+    </script>
+    <style>
+        @media (max-width: 576px) {}
+.ch{
+    font-size: 20px;
 
+}
+        @media (min-width: 576px) {
+            .ch{
+    font-size: 50px;
+}
+        }
+    </style>
 
 </body>
