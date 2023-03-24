@@ -20,10 +20,10 @@
                         <!-- Logo -->
                         <div class="logo">
                             
-                            <h4>Si<span style="color: #ff2020;">Gag</span></h4>
+                            <h1 class="h">Si<span style="color: #ff2020;">Gag</span></h1>
                         </div>
                         <!-- Main-menu -->
-                        <div class="main-menu d-none d-lg-block">
+                        <div class="main-menu d-none d-lg-block" style="color: black;">
                             <nav>
                                 <ul id="navigation">
                                     <li><a href="/">Home</a></li>
@@ -44,24 +44,23 @@
                             </nav>
                         </div>
                         <!-- Header Right -->
-                        <div class="header-right">
-                            <ul>
+                        <div class="header-right ">
+                            <ul >
                                     
                                 {{#if user}}
-                                <a href="/userprofile"><span class="flaticon-user"></span></a>
+                                <li>
+                                <a href="/userprofile"><span class="flaticon-user "></span></a></li>
                                 <li>    
-                                <li><b><a href="/cart"><span class="flaticon-shopping-cart"><sub>Cart</sub></span></a></b> </li>
+                                <li><b><a href="/cart"><span class="flaticon-shopping-cart mx-2"></span></a></b> </li>
                                 </li>
-                                 <a href="/wishlist"><i style='font-size:24px;color: #ff2020;' class='far'>&#xf004;</i></a>&nbsp;&nbsp;&nbsp;
-                                <i style='font-size:16px' class='fas mt-1' ><a href="/orderlistpage" style="color:black;">&#xf218;<sub>&nbsp;My Orders</sub></a></i>
+                                 <a href="/wishlist"><i style='font-size:24px;color:black;' class='far mx-2'>&#xf004;</i></a>&nbsp;&nbsp;&nbsp;
+                                <i style='font-size:16px' class='fas mt-1 mx-2' ><a href="/orderlistpage" style="color:black;">&#xf218;<sub>&nbsp;</a></i>
                               
                                 {{else}}
                                 
-                                <li> <a style="color: black; " href="/user-login"> 
-
-                                        <h4>&nbsp;Login&nbsp;</h4>
-                                    </a>
-                                    <li> &nbsp;&nbsp;<a href="/user-login"><i style='font-size:24px;color: #ff2020;' class='far'>&#xf004;</i></a>&nbsp;&nbsp;&nbsp;</li>
+                              <a href="/user-login"><span class="flaticon-user"></span></a>
+                                    <li> &nbsp;&nbsp;<a href="/user-login"><i style='font-size:24px;color:rgb(56, 54, 54);' class='far' >&#xf004;</i></a>&nbsp;&nbsp;&nbsp;</li>
+                               
                                 <li><a href="/user-login"><span class="flaticon-shopping-cart"></span></a> </li>
                                 </li>
                                 {{/if}}
@@ -402,7 +401,7 @@
             </form>
         </div>
     </div>
-
+  
 </body>
 
 </html>

@@ -91,10 +91,10 @@
                   </td>
                   <td>
                     {{message}}
-                    <button class="  mx-2 btn-primary" onclick="qtyDecrement('{{this._id}}')"> -</button>
+                    <button class="  mx-2" onclick="qtyDecrement('{{this._id}}')" style=" background-color:  #ff2020;"> -</button>
                     <input id="quantityBox{{this._id}}" value="{{this.quantity}}"
                       style="width: 20px; border-style: none;" readonly>
-                    <button class=" mx-2 btn-primary  " onclick="changeQuantity('{{this._id}}')">+</button>
+                    <button class=" mx-2   " onclick="changeQuantity('{{this._id}}')" style=" background-color:  #ff2020;">+</button>
                   </td>
                   <td>
                     <h5 id="totalPrice{{this._id}}" style="color: black;">{{this.totalprice}}</h5>
@@ -104,7 +104,7 @@
 
                   <td><button
                       onclick="if( confirm(' Are you sure toRemove this From Cart?')){window.location.href='/removefromcart/{{this._id}}' }"
-                      class="oval-btn  btn-success">Remove</button></td>
+                      class="oval-btn  btn-success" style=" background-color:  #ff2020;">Remove</button></td>
                 </tr>
 
                 {{/each}}
@@ -135,9 +135,9 @@
           <div class="row">
             <div class="col-12">
               <div class="checkout_btn_inner d-flex justify-content-end">
-                <button class=" btn-primary mr-3 oval-btn"><a class=" mr-3" href="/viewallproducts"
+                <button class="  mr-3 oval-btn " style=" background-color:  #ff2020;"><a class=" mr-3" href="/viewallproducts"
                     style="text-decoration: none;">Continue Shopping</a></button>
-                <button class=" btn-success oval-btn"><a class="checkout_btn_1" href="/checkout">Proceed to checkout</a>
+                <button class=" btn-success oval-btn" style=" background-color:  #ff2020;"><a class="checkout_btn_1" href="/checkout">Proceed to checkout</a>
                 </button>
               </div>
             </div>

@@ -29,7 +29,7 @@ module.exports = {
       }
     } catch (error) {
       console.error(error);
-      res.redirect("/404");
+      res.redirect("/user-login");
     }
   },
 
@@ -47,7 +47,7 @@ module.exports = {
     res.render("signupform");
   },
 
-  postsignup: async (req, res) => {
+  postsignup: async (req, res) => {   
     try {
       // Validate name field
       if (!req.body.name || req.body.name.length < 3) {
@@ -269,7 +269,7 @@ module.exports = {
       }
     } catch (error) {
       console.error(error);
-      res.redirect("/404");
+      res.redirect("/user-login");
     }
   },
 
@@ -900,11 +900,6 @@ module.exports = {
         i.deliveryDate=new Date(i.deliveryDate).toDateString()
       }
     let order=await orderModel.findById({_id:orderId}).lean()
-    // let deliverydate=order.deliveryDate+7day;
-    // console.log(deliverydate);
-    // let returnfinished=new Date()<deliverydate
-
-      // res.render("viewinorder", { details ,returnfinished});
       res.render("viewinorder", { details });
     } catch (err) {
       console.error(err);
@@ -994,7 +989,7 @@ console.log(req.body);
       res.render("wishlist", { product });
     } catch (err) {
       console.error(err);
-      res.redirect('/404');
+      res.redirect('/user-login');
     }
   },
 

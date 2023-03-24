@@ -1,73 +1,87 @@
-<header>
-    <!-- Header Start -->
-    <div class="header-area">
-        <div class="main-header header-sticky">
-            <div class="container-fluid">
-                <div class="menu-wrapper">
-                    <!-- Logo -->
-                    <div class="logo">
-                        <h1>Si<span style="color: #ff2020;">Gag</span></h1>
-                    </div>
-                    <!-- Main-menu -->
-                    <div class="main-menu d-none d-lg-block">
-                        <nav>
-                            <ul id="navigation">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="/viewallproducts">shop</a></li>
+<!doctype html>
+<html lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Watch shop | eCommers</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
-                                <li><a href="#">Pages</a>
-                                    <ul class="submenu">
-                                        <li><a href="/userprofile">profile</a></li>
-                                        <li><a href="/cart">Cart</a></li>
+    <!-- CSS here -->
+        <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="/assets/css/flaticon.css">
+        <link rel="stylesheet" href="/assets/css/slicknav.css">
+        <link rel="stylesheet" href="/assets/css/animate.min.css">
+        <link rel="stylesheet" href="/assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="/assets/css/themify-icons.css">
+        <link rel="stylesheet" href="/assets/css/slick.css">
+        <link rel="stylesheet" href="/assets/css/nice-select.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
 
-                                    </ul>
-                                </li>
-                                <li><a href="">Contact</a></li>
+</head>
+    
+
+<body>
+    
+    <header>
+        <!-- Header Start -->
+        <div class="header-area">
+            <div class="main-header header-sticky">
+                <div class="container-fluid">
+                    <div class="menu-wrapper">
+                        <!-- Logo -->
+                        <div class="logo">
+                           <a href="/"><h1>Si<span style="color: #ff2020;">Gag</span></h1></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu d-none d-lg-block">
+                            <nav>                                                
+                                <ul id="navigation">  
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/viewallproducts">shop</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="submenu">
+                                            <li><a href="/cart">Cart</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Header Right -->
+                         <div class="header-right">
+                            <ul>
+                                
+                                <li> <a href="/userprofile"><span class="flaticon-user"></span></a></li>
+                                <li><a href="/cart"><span class="flaticon-shopping-cart"></span></a> </li>
                             </ul>
-                        </nav>
+                        </div>
                     </div>
-                    <!-- Header Right -->
-                    <div class="header-right">
-                        <ul>
-                            <li>
-                                <div class="nav-search search-switch">
-                                    <span class="flaticon-search"></span>
-                                </div>
-                            </li>
-                            <li> <a href="/userprofile"><span class="flaticon-user"></span></a></li>
-                            <li><a href="/cart"><span class="flaticon-shopping-cart"></span></a> </li>
-                        </ul>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
                     </div>
-                </div>
-                <!-- Mobile Menu -->
-                <div class="col-12">
-                    <div class="mobile_menu d-block d-lg-none"></div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Header End -->
-</header>
-<main>
-
-
-    {{#each details }}
-    <div class="row justify-content-center" style="padding-top: 100px;">
-
-        <div class="col-md-6" style="padding-left: 200px;">
-
-            <div class="single_product_img">
-                <div class="wrap-pic-w pos-relative" id="zoom-image">
-                    <img src="/product-images/{{this.products.image.filename}}" alt="#" class="img-fluid">
-                </div>
-            </div>
-
-
-        </div>
-        <div class="col-md-6">
-
-            <div class="single_product_text  pt-5">
-                <h2>{{this.products.productname}}</h2>
+        <!-- Header End -->
+    </header>
+    <main>
+        
+        <!--================Single Product Area =================-->
+         {{#each details }}
+        <div class="product_image_area">
+            <div class="container">
+            <div class="row justify-content-center">
+                    <div class="single_product_img">
+                        <img src="/product-images/{{this.products.image.filename}}" alt="#" class="img-fluid mt-5 imgdiv">
+                    </div>
+                <div class="col-lg-8">
+                <div class="single_product_text text-center pt-3 align-items-start">
+          <h2>{{this.products.productname}}</h2>
                 <p>{{this.products.description}} </p>
                 <h5>Brand:{{this.products.brand}}</h5>
                 <h5>Category:{{this.products.category}}</h5>
@@ -79,12 +93,7 @@
                 <div class="card_area">
 
                     <div class="add_to_cart">
-                        {{!-- {{#if this.cancel}}
-                        {{else}}
-                        <a href="/ordercancel/{{this._id}}" class="btn btn-dark">Order Cancel</a>
-                        {{/if}}
-                        <a href="orderreturn/{{this._id}}" class="btn btn-dark ">Return Order</a> --}}
-                        {{#unless this.cancel}}
+                         {{#unless this.cancel}}
                         <a href="/ordercancel/{{this._id}}" class="btn btn-primary cancel">Cancel Order</a>
                         {{/unless}}
                         {{#if this.returnstatus}}
@@ -96,10 +105,64 @@
                         {{/if}}
                     </div>
                 </div>
+                </div>
             </div>
-
+            </div>
         </div>
+        {{/each}}
+        
+    </main>
+    
+   <style>
+             @media (max-width: 767px) {
+            .imgdiv{
+                padding-top: 200px;
+            }
+          }
+        </style>
 
-    </div>
+    <!-- JS here -->
 
-    {{/each}}
+        <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+        <!-- Jquery, Popper, Bootstrap -->
+        <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+        <script src="./assets/js/popper.min.js"></script>
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <!-- Jquery Mobile Menu -->
+        <script src="./assets/js/jquery.slicknav.min.js"></script>
+
+        <!-- Jquery Slick , Owl-Carousel Plugins -->
+        <script src="./assets/js/owl.carousel.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+
+        <!-- One Page, Animated-HeadLin -->
+        <script src="./assets/js/wow.min.js"></script>
+        <script src="./assets/js/animated.headline.js"></script>
+        <script src="./assets/js/jquery.magnific-popup.js"></script>
+
+        <!-- Scroll up, nice-select, sticky -->
+        <script src="./assets/js/jquery.scrollUp.min.js"></script>
+        <script src="./assets/js/jquery.nice-select.min.js"></script>
+        <script src="./assets/js/jquery.sticky.js"></script>
+        
+        <!-- contact js -->
+        <script src="./assets/js/contact.js"></script>
+        <script src="./assets/js/jquery.form.js"></script>
+        <script src="./assets/js/jquery.validate.min.js"></script>
+        <script src="./assets/js/mail-script.js"></script>
+        <script src="./assets/js/jquery.ajaxchimp.min.js"></script>
+        
+        <!-- Jquery Plugins, main Jquery -->    
+        <script src="./assets/js/plugins.js"></script>
+        <script src="./assets/js/main.js"></script>
+
+        <!-- swiper js -->
+        <script src="./assets/js/swiper.min.js"></script>
+            <!-- swiper js -->
+        <script src="./assets/js/mixitup.min.js"></script>
+        <script src="./assets/js/jquery.counterup.min.js"></script>
+        <script src="./assets/js/waypoints.min.js"></script>
+
+</body>
+
+</html>

@@ -146,7 +146,7 @@
                                 </div>
                             </div> 
                         </div>
-                        <p id="msg"></p>
+                        
 
 
                         <form action="/checkout" method="post">
@@ -187,7 +187,35 @@
                                         <a href="/addAddrsincheckout" class="btn btn-dark rounded-4 ">Add
                                             Address</a>
                                     </div>
+                                    <div>
+ 
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2 mt-2">
+                                <span id="errMsg" class="gl-text u-s-m-b-16 font-weight-bold text-danger">My
+                                        Wallet</span>
+                                <input type="text" value=" {{user.Wallet}}" class="mb-3">
+                                   <p id="msg"></p>
+                                <form action="" method="post">
+                                    
+                                    <div class="u-s-m-b-16">
+                                        <div class="u-s-m-b-15">
+                                            <label for="coupon"></label>
+                                            <input class="input-text input-text--primary-style text-center" type="text"
+                                                id="walletBox" name="wallet" placeholder="enter the wallet amount" />
+                                            <input type="hidden" name="userId" value="{{user._id}}" />
+                                        </div>
+                                        <div class="u-s-m-b-15">
+                                            <button class="btn btn-primary mt-2" onclick="applyWallet()"
+                                                type="button">APPLY</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+</div>
                                 </div>
+
+
+
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                                     <div class="your-order-payment">
                                         <div class="your-order">
