@@ -7,7 +7,7 @@ const userRouter = require("./routes/user")
 const adminRouter=require("./routes/admin")
 const path=require('path')
 var session=require('express-session')
-// const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');
 
 // const morgan= require('morgan')
 const hbs=require('hbs')
@@ -24,7 +24,7 @@ app.use(session({
   cookie:{maxAge:600000},
   resave:true,
   saveUninitialized:false,
-  // store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/project-sigag' })
+  store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/project-sigag' })
 }))
 
 app.set('views', path.join(__dirname, 'views'));
