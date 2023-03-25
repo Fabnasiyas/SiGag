@@ -28,7 +28,7 @@ module.exports = {
         res.render("index", { products, pro, banner });
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
       res.redirect("/user-login");
     }
   },

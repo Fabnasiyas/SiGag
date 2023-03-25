@@ -32,11 +32,11 @@ module.exports = {
           };
           res.redirect("/admin/");
         } else {
-          console.log("Invalid password");
+          res.send("Invalid password");
           res.redirect("back");
         }
       } else {
-        console.log("Admin not found");
+        res.send("Admin not found");
         res.redirect("back");
       }
     } catch (error) {
@@ -293,8 +293,10 @@ module.exports = {
       res.redirect("/admin/product-list");
     } catch (error) {
       console.log(error);
-      res.redirect("/admin/add-product");
+      res.redirect("/admin/add-product")
+    
     }
+  
   },
 
   unlistProduct: async (req, res) => {

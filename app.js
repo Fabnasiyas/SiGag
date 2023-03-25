@@ -3,8 +3,8 @@ require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
 const dbConnect= require('./config/dbConnect')
-const userRouter = require("./routes/user")
 const adminRouter=require("./routes/admin")
+const userRouter = require("./routes/user")
 const path=require('path')
 var session=require('express-session')
 const MongoStore = require('connect-mongo');
@@ -43,8 +43,15 @@ hbs.registerHelper('inc',function(value,options){
 hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
   return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
 });
+
 app.use('/admin',adminRouter)
 app.use('/',userRouter);
+app.use(function(err, req, res, next) {
+  console.error(err);
+  if (err) {
+    res.status(err.status || 404).render('404', { message: err.message });
+  }
+});
 
 app.all('*',(req,res)=>{
   res.render('404');
