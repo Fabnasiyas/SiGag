@@ -53,7 +53,6 @@ router.get("/deleteaddress/:id",usercontroller.getdeleteaddress);
  router.post('/couponincheckout',usercontroller.applyCoupon)
  router.post('/walletincheckout',usercontroller.getwalletamount)
 router.post("/checkout",usercontroller.postcheckout)
-
 router.get("/checkout",usercontroller.getcheckout)
 router.get("/orderlistpage",usercontroller.getorderlistpage)
 router.get('/vieworderdetails/:id',usercontroller.getvieworder)

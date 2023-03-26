@@ -11,8 +11,8 @@ let sentOtp=(email,otp)=>{
           rejectUnauthorized: false
         }, // Usually true if connecting to port 465
         auth: {
-          user: "faafabin@gmail.com", // Your email address
-          pass: "hlmereuvfcdfuwsn", // Password (for gmail, your app password)
+          user: "fabnasiyasck@gmail.com", // Your email address
+          pass: "mgnhuboxtimleqib", // Password (for gmail, your app password)
         },
       });
   

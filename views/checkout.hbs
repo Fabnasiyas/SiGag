@@ -13,22 +13,6 @@
                         </div>
                         <!-- Main-menu -->
                         <div class="main-menu d-none d-lg-block">
-                            {{!-- <nav>
-                                <ul id="navigation">
-                                    <li><a href="/">Home</a></li>
-                                    <li><a href="">shop</a></li>
-                                    <li><a href="">about</a></li>
-
-                                    <li><a href="#">Pages</a>
-                                        <ul class="submenu">
-                                            <li><a href='/user-login'>Login</a></li>
-                                            <li><a href="/cart">Cart</a></li>
-
-                                        </ul>
-                                    </li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                </ul>
-                            </nav> --}}
                         </div>
                         <!-- Header Right -->
                         <div class="header-right">
@@ -70,9 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!--End Page Title-->
-
-                        {{!-- <div class="container">
+                        <div class="">
                             <div class="row">
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
                                     <form action="/couponincheckout" method="post">
@@ -96,57 +78,8 @@
                                     </form>
                                 </div>
                             </div>
-
-                            <p id="msg"></p>
-
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
-                                
-                                <input type="text" value="{{user.Wallet}}">
-                                <form action="" method="post">
-                                    <span id="errMsg" class="gl-text u-s-m-b-16 font-weight-bold text-danger">My
-                                        Wallet</span>
-                                    <div class="u-s-m-b-16">
-                                        <div class="u-s-m-b-15">
-                                            <label for="coupon"></label>
-                                            <input class="input-text input-text--primary-style text-center" type="text"
-                                                id="walletBox" name="wallet" placeholder="enter the wallet amount" />
-                                            <input type="hidden" name="userId" value="{{user._id}}" />
-                                        </div>
-                                        <div class="u-s-m-b-15">
-                                            <button class="btn btn-primary mt-2" onclick="applyWallet()"
-                                                type="button">APPLY</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div> --}}
-                        <div class="">
-                           <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-3">
-                                    <form action="/couponincheckout" method="post">
-                                        <span id="errMsg"
-                                            class="gl-text u-s-m-b-16 font-weight-bold text-danger">Available
-                                            coupons</span>
-                                        <div class="u-s-m-b-16">
-                                            <div class="u-s-m-b-15">
-
-                                                <label for="coupon"></label>
-
-                                                <input class="input-text input-text--primary-style text-center"
-                                                    type="text" id="coupon" name="coupon" placeholder="Coupon Code" />
-                                                <input type="hidden" name="userId" value="{{user._id}}" />
-                                            </div>
-                                            <div class="u-s-m-b-15">
-
-                                                <button class="btn btn-primary mt-2" type="submit">APPLY</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div> 
                         </div>
-                        
+
 
 
                         <form action="/checkout" method="post">
@@ -188,30 +121,36 @@
                                             Address</a>
                                     </div>
                                     <div>
- 
 
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2 mt-2">
-                                <span id="errMsg" class="gl-text u-s-m-b-16 font-weight-bold text-danger">My
-                                        Wallet</span>
-                                <input type="text" value=" {{user.Wallet}}" class="mb-3">
-                                   <p id="msg"></p>
-                                <form action="" method="post">
-                                    
-                                    <div class="u-s-m-b-16">
-                                        <div class="u-s-m-b-15">
-                                            <label for="coupon"></label>
-                                            <input class="input-text input-text--primary-style text-center" type="text"
-                                                id="walletBox" name="wallet" placeholder="enter the wallet amount" />
-                                            <input type="hidden" name="userId" value="{{user._id}}" />
-                                        </div>
-                                        <div class="u-s-m-b-15">
-                                            <button class="btn btn-primary mt-2" onclick="applyWallet()"
-                                                type="button">APPLY</button>
+
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2 mt-2">
+                                            <span id="errMsg" class="gl-text u-s-m-b-16 font-weight-bold text-danger">My
+                                                Wallet</span>
+                                            <input type="text" value=" {{user.Wallet}}" class="mb-3">
+                                            <p id="msg"></p>
+                                            <form action="" method="post">
+
+                                                <div class="u-s-m-b-16">
+                                                    <div class="u-s-m-b-15">
+                                                        <label for="coupon"></label>
+                                                        
+                                                        <input class="input-text input-text--primary-style text-center"
+                                                            type="number" id="walletBox" name="wallet"
+                                                            placeholder="Enter the wallet amount" min="0" required />
+
+<p id="errorMsg" style="display: none; color: red;">Wallet amount should be greater than or equal to the total.</p>
+
+
+                                                        <input type="hidden" name="userId" value="{{user._id}}" />
+                                                    </div>
+                                                    <div class="u-s-m-b-15">
+                                                        <button class="btn btn-primary mt-2" onclick="applyWallet()"
+                                                            type="button">APPLY</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-</div>
                                 </div>
 
 
@@ -359,6 +298,15 @@
                 </div>
             </div>
     </div>
+    <script>
+        const walletBox = document.getElementById('walletBox');
+
+        walletBox.addEventListener('change', function () {
+            if (walletBox.value < 0) {
+                walletBox.value = 0;
+            }
+        });
+    </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
         function applyWallet() {
@@ -380,16 +328,19 @@
             })
         }
     </script>
+    
     <style>
         @media (max-width: 576px) {}
-.ch{
-    font-size: 20px;
 
-}
+        .ch {
+            font-size: 20px;
+
+        }
+
         @media (min-width: 576px) {
-            .ch{
-    font-size: 50px;
-}
+            .ch {
+                font-size: 50px;
+            }
         }
     </style>
 

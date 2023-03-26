@@ -8,7 +8,7 @@
             <!-- Logo -->
             <div class="logo">
               <a href="/">
-                <h4>Si<span style="color: #ff2020;">Gag</span></h4>
+                <h1 class="h">Si<span style="color: #ff2020;">Gag</span></h1>
               </a>
             </div>
             <!-- Main-menu -->
@@ -121,23 +121,15 @@
 
               </tbody>
             </table>
-            {{!-- <div class="checkout_btn_inner float-right">
-              <a class="btn_1" href="/viewallproducts">Continue Shopping</a>
-              <a class="btn_1 checkout_btn_1" href="/checkout">Proceed to checkout</a>
-            </div> --}}
           </div>
         </div>
-        {{!-- <div class="checkout_btn_inner float-right">
-          <a class="btn_1 b1" href="/viewallproducts">Continue Shopping</a>
-          <a class="btn_1  b1 checkout_btn_1" href="/checkout">Proceed to checkout</a>
-        </div> --}}
         <div class="container">
           <div class="row">
             <div class="col-12">
               <div class="checkout_btn_inner d-flex justify-content-end">
                 <button class="  mr-3 oval-btn " style=" background-color:  #ff2020;"><a class=" mr-3" href="/viewallproducts"
                     style="text-decoration: none;">Continue Shopping</a></button>
-                <button class=" btn-success oval-btn" style=" background-color:  #ff2020;"><a class="checkout_btn_1" href="/checkout">Proceed to checkout</a>
+                <button class="  oval-btn" style=" background-color:  #ff2020;"><a class="checkout_btn_1" href="/checkout">Proceed to checkout</a>
                 </button>
               </div>
             </div>
@@ -146,9 +138,9 @@
 
         {{else}}
 
-        <div class="text-center mt-5">
+        <div class="text-center mt-5 ">
           <img src="https://cdni.iconscout.com/illustration/premium/thumb/empty-cart-2130356-1800917.png"
-            alt="Empty Cart" style="max-width: 100%; height: auto;">
+            alt="Empty Cart" style="max-width: 100%; height: auto;" class="emptycart">
           <h2 style="color: #ff2020; font-size: 2rem; margin-top: 1rem;">Your cart is empty!</h2>
         </div>
 
@@ -157,17 +149,26 @@
             h2 {
               font-size: 1.5rem;
             }
+            .emptycart{
+              padding-top: 100px;
+            }
+            .h{
+              
+            }
           }
 
           @media (min-width: 768px) and (max-width: 991px) {
             h2 {
               font-size: 1.8rem;
             }
+            
+            
           }
 
           @media (min-width: 992px) {
             h2 {
               font-size: 2rem;
+             
             }
           }
         </style>

@@ -1,139 +1,17 @@
-{{!-- <form action="/editaddress" method="post">
-
-  <div class="container py-5">
-    <div class="row d-flex justify-content-center align-items-center">
-      <div class="col">
-        <div class="card my-4 shadow-3">
-          <div class="row g-0">
-
-            <div class="col-xl-12">
-              <div class="card-body p-md-5 text-black">
-                <h3 class="mb-4 text-uppercase text-center">Edit Address</h3>
-                <input
-                  type="text"
-                  name="id"
-                  placeholder="Name"
-                  required
-                  value="{{address.-id}}"
-                  style="height: 0px; visibility: hidden;"
-                />
-                <div class="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="form3Example8"
-                    class="form-control form-control-lg"
-                    name="name"
-                    placeholder="Name"
-                    value="{{address.name}}"
-                  />
-
-                </div>
-                <div class="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="form3Example8"
-                    class="form-control form-control-lg"
-                    name="mobile"
-                    placeholder="Mobile"
-                    value="{{address.mobile}}"
-                  />
-
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="form3Example8"
-                    class="form-control form-control-lg"
-                    name="pincode"
-                    placeholder="Pincode"
-                    value="{{address.pincode}}"
-                  />
-
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="form3Example8"
-                    class="form-control form-control-lg"
-                    name="locality"
-                    placeholder="Locality"
-                    value="{{address.locality}}"
-                  />
-
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="form3Example8"
-                    class="form-control form-control-lg"
-                    name=" homeaddress"
-                    placeholder="Home address"
-                    value="{{address.homeaddress}}"
-                  />
-
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="form3Example8"
-                    class="form-control form-control-lg"
-                    name="city"
-                    placeholder="City"
-                    value="{{address.city}}"
-                  />
-
-                </div>
-                <div class="form-outline mb-4">
-                  <input
-                    type="text"
-                    id="form3Example8"
-                    class="form-control form-control-lg"
-                    name="state"
-                    placeholder="State"
-                    value="{{address.state}}"
-                  />
-
-                </div>
-
-                <div class="row">
-                  <div class="col-md-6 mb-2">
-
-                    <div class="d-flex justify-content-end pt-3">
-                      <a href=""><button
-                          type="submit"
-                          class="btn btn-success btn-lg ms-2 mx-4"
-                        >Save Address</button></a>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</form> --}}
-<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Product</p>
+<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Edit Address</p>
 
 
 <form action="/editaddress" method="POST">
   <div class="container mt-5">
-    <input type="text" name="id" placeholder="Name"  value="{{address.id}}"style="height: 0px; visibility: hidden;" />
-    
+    <input type="text" name="id" placeholder="Name" value="{{address.id}}" style="height: 0px; visibility: hidden;" />
+
     <input type="text" name="name" class="form-control" value="{{address.name}}" />
     <label for="">Mobile</label>
     <input type="text" name="mobile" class="form-control" value="{{address.mobile}}" />
     <label for="">Pincode</label>
     <input type="text" name="pincode" class="form-control" value="{{address.locality}}" />
 
-   
+
     <label for="">Home address</label>
     <input type="text" name="address" class="form-control" value="{{address.address}}" />
     <label for="">City</label>
@@ -142,6 +20,19 @@
     <label for="">State</label>
     <input type="text" name="state" class="form-control" value="{{address.state}}" />
 
-    
-    <button type="submit" class="btn btn-success mt-5">Submit</button>
+
+    <button type="submit" class="btn btn-success mt-5 addb">Submit</button>
 </form>
+<style>
+  @media (max-width: 767px) {
+    .addb {
+      margin-left: 120px;
+    }
+  }
+
+  @media (min-width: 767px) {
+    .addb {
+      margin-left: 500px;
+    }
+  }
+</style>

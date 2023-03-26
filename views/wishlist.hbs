@@ -49,6 +49,7 @@
     </div>
 
     <!--================Cart Area =================-->
+    {{#each product}}
     <section class="cart_area section_padding" style="padding-top: 100px;">
       <div class="container">
         <div class="cart_inner">
@@ -64,7 +65,7 @@
                 
 
                 <tr>
-                  {{#each product}}
+                  
                   <td>
                     <div class="media">
                       <div class="d-flex">
@@ -84,6 +85,11 @@
                 </tr>
                
                 {{/each}}
+                {{#unless product}}
+                <div>
+                  <img src="https://shopperswarehouse.com/assets/e_website/assets/site_image/empty_wishlist.png" alt="" style=" max-width: 100%; height: auto;" class="mt-5 wsh">
+                </div>
+                {{/unless}}
              </tbody>
             </table>
             
@@ -106,6 +112,12 @@
     height: 90px;
     width: 90px;
   }
+ 
   } 
+  @media(min-width:576px){
+    .wsh{
+      padding-left: 750px;
+    }
+  }
 </style>
 </body>

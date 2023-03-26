@@ -122,8 +122,6 @@ module.exports = {
       } catch (error) {
         console.log(error);
       }
-
-      // res.render("dashboard");
     } else {
       res.redirect("/admin/login");
     }
@@ -164,7 +162,6 @@ module.exports = {
   },
   deletebanner: async (req, res) => {
     try {
-      // const bannerId = req.params.id;
       let bannerId = sanitizer.sanitize(req.params.id);
       await bannerModel.deleteOne({ _id: bannerId });
       res.redirect("/admin/banner");
@@ -173,6 +170,7 @@ module.exports = {
       res.status(500).send("Internal server error");
     }
   },
+
   // for user blocking
   blockuser: async (req, res) => {
     try {
@@ -187,6 +185,7 @@ module.exports = {
       res.status(500).send("Server error");
     }
   },
+
   // for user unblocking
   unblockuser: async (req, res) => {
     try {
@@ -201,6 +200,7 @@ module.exports = {
       res.status(500).send("Server error");
     }
   },
+
   getsearchuser: async (req, res) => {
     try {
       let query = req.body.name;
@@ -213,6 +213,7 @@ module.exports = {
       res.status(500).send("An error occurred while searching for user");
     }
   },
+
   searchproduct: async (req, res) => {
     try {
       let prod = req.body.name;
@@ -225,6 +226,7 @@ module.exports = {
       res.status(500).send("An error occurred while searching for coupon");
     }
   },
+
   couponsearch: async (req, res) => {
     try {
       let coupon = req.body.name;
@@ -237,6 +239,7 @@ module.exports = {
       res.status(500).send("An error occurred while searching for products");
     }
   },
+
   // for getting productlist page
   getproductlist: async (req, res) => {
     try {
@@ -247,6 +250,7 @@ module.exports = {
       res.status(500).send("Server error");
     }
   },
+
   // for getting add product
   getaddProduct: async (req, res) => {
     try {
@@ -274,10 +278,8 @@ module.exports = {
           background: { r: 255, g: 255, b: 255, alpha: 0 },
         })
         .toFile(image.path + ".png");
-
       image.filename = image.filename + ".png";
       image.path = image.path + ".png";
-
       const product = await productModel.create({
         productname,
         price,
@@ -289,14 +291,11 @@ module.exports = {
         image: image,
         sideimage: sideimage,
       });
-
-      res.redirect("/admin/product-list");
+       res.redirect("/admin/product-list");
     } catch (error) {
       console.log(error);
-      res.redirect("/admin/add-product")
-    
+      res.redirect("/admin/add-product")    
     }
-  
   },
 
   unlistProduct: async (req, res) => {
@@ -335,13 +334,11 @@ module.exports = {
   },
 
   // for posting editproduct page
-
-  posteditProduct: async (req, res) => {
+   posteditProduct: async (req, res) => {
     try {
       const _id = sanitizer.sanitize(req.params.id);
       const { productname, price, brand, category, stock, description } =
         req.body;
-
       let updateObject = {
         productname,
         price,
@@ -350,8 +347,7 @@ module.exports = {
         stock,
         description,
       };
-
-      if (req.files.image && req.files.sideimage) {
+       if (req.files.image && req.files.sideimage) {
         updateObject.image = req.files.image[0];
         updateObject.sideimage = req.files.sideimage;
       } else if (req.files.image) {
@@ -359,11 +355,9 @@ module.exports = {
       } else if (req.files.sideimage) {
         updateObject.sideimage = req.files.sideimage;
       }
-
       const updatedProduct = await productModel.findByIdAndUpdate(_id, {
         $set: updateObject,
       });
-
       if (!updatedProduct) {
         res.redirect("back");
       } else {
@@ -384,6 +378,7 @@ module.exports = {
       res.status(500).send("Internal Server Error");
     }
   },
+
   // for getting add category page
   getaddcategory: (req, res) => {
     try {
@@ -400,12 +395,10 @@ module.exports = {
       const categorys = await categoryModel.findOne({
         category: { $regex: new RegExp(category, "i") },
       });
-
       if (categorys) {
         res.render("addcategory", { error: true });
       } else {
         const categ = new categoryModel({ category: category.toLowerCase() });
-
         categ.save((err, data) => {
           if (err) {
             res.send(err);
@@ -418,6 +411,7 @@ module.exports = {
       res.send(err);
     }
   },
+
   // for blocking a category
   blockcategory: async (req, res) => {
     try {
@@ -454,13 +448,13 @@ module.exports = {
       for (const i of order) {
         i.orderDate = new Date(i.orderDate).toDateString();
       }
-
       res.render("orderListinadmin", { order });
     } catch (error) {
       console.error(error);
       res.redirect("back");
     }
   },
+
   getcoupon: async (req, res) => {
     try {
       let coupons = await couponModel.find().sort({ _id: -1 }).lean();
@@ -483,17 +477,14 @@ module.exports = {
   postaddcoupon: async (req, res) => {
     try {
       const { name, code, minAmount, cashback, expiry } = req.body;
-
-      // Check if the coupon code already exists (case-insensitive)
+     // Check if the coupon code already exists (case-insensitive)
       const existingCoupon = await couponModel.findOne({
         code: { $regex: `^${code}$`, $options: "i" },
       });
-
       if (existingCoupon) {
         // Coupon code already exists, send an error message
         return res.render("addcoupon", { error: "Coupon code already exists" });
       }
-
       const existingname = await couponModel.findOne({
         name: { $regex: `^${name}$`, $options: "i" },
       });
@@ -503,18 +494,15 @@ module.exports = {
           cerror: "Coupon name already exists",
         });
       }
-
       // Validate the expiry date
       const expiryDate = new Date(expiry);
       const today = new Date();
-      today.setHours(0, 0, 0, 0); // Set the time to midnight to compare only the date
-
+      today.setHours(0, 0, 0, 0); 
       if (expiryDate < today) {
         return res.render("addcoupon", {
           derror: "Expiry date cannot be before today's date",
         });
       }
-
       const dateParts = expiry.split("/");
       const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
       const newCoupon = await couponModel.create({
@@ -525,7 +513,6 @@ module.exports = {
         expiry: formattedDate,
         block: false,
       });
-
       res.redirect("/admin/coupons");
     } catch (error) {
       console.error(error);
@@ -536,7 +523,6 @@ module.exports = {
 
   geteditcoupon: async (req, res) => {
     try {
-      // const _id = req.params.id;
       let _id = sanitizer.sanitize(req.params.id);
       const coupon = await couponModel.findOne({ _id }).lean();
       res.render("editcoupon", { coupon });
@@ -545,10 +531,10 @@ module.exports = {
       res.redirect("/admin/coupons");
     }
   },
+
   posteditcoupon: async (req, res) => {
     let block = false;
     const { name, code, expiry, minAmount, cashback, _id } = req.body;
-
     try {
       await couponModel.findByIdAndUpdate(
         _id,
@@ -726,18 +712,15 @@ module.exports = {
         for (const i of deliveredOrders) {
           i.orderDate = new Date(i.orderDate).toDateString();
         }
-
         salesCount = await orderModel.countDocuments({
           orderStatus: "delivered",
         });
-
         result = await orderModel.aggregate([
           { $match: { orderStatus: "delivered" } },
           { $group: { _id: null, totalPrice: { $sum: "$totalPrice" } } },
         ]);
         salesSum = result[0]?.totalPrice;
       }
-
       const users = await orderModel.distinct("userId");
       const userCount = users.length;
       if (Object.keys(req.query).length == 0) {

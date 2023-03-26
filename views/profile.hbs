@@ -120,25 +120,6 @@
         <div class="container pt-5">
             <h1 class="ml-2 mb-3"><b> My Profile</b></h1>
             <div class="row">
-                {{!-- <div class="col-12 col-md-6">
-                    <div class="profile-container">
-                        <h4>General</h4>
-                        <div class="profil-row">
-                            <b>Name : </b><span><b>{{Address.name}}</b></span>
-                        </div>
-                        <div class="profil-row">
-                            <b>Mob No : </b><span><b>{{Address.mobile}}</b></span>
-                        </div>
-
-                        <div class="profil-row">
-                            <button
-                                onclick="window.location.href='/edit-profile/{{users.address.address_id}}'">Edit</button>
-                            <a href="/logout">
-                                <button>Logout</button>
-
-                            </a>
-                        </div>
-                    </div> --}}
                     <div class="row gutters-sm">
             <div class="col-md-4 mb-5">
               <div class="card mb-4">
@@ -154,59 +135,7 @@
                   </div>
                 </div>
               </div>
-              {{!-- <div class="card bg-light mb-3" style="max-width: 18rem;">
-                        <div class="card-header">My Wallet</div>
-                        <div class="card-body">
-
-                            <h5 class="card-title mx-3 mb-4" style="color: black;">Amount:{{User.Wallet}}</h5>
-
-                            <button type="button" class="btn btn-dark mx-5" data-toggle="modal" data-target="#exampleModal">
-                                View Details
-                            </button>
-
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">My Wallet</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <table class="table table-bordered">
-  <thead>
-    <tr>
-      
-      <th scope="col">Refund Amount</th>
-      <th scope="col">Date</th>
-      <th scope="col">OrderId</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each User.walletdetails}}
-      <tr>
-      <td>{{this.transactionAmount}}</td>
-      <td>{{this.transactionDate}}</td>
-      <td>{{this.order}}</td>
-    </tr>
-    {{/each}}
-    <h4>Total Amount={{User.Wallet}}</h4>
-  </tbody>
-</table>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+             
                     <div class="card mt-2">
                         <div class="card-header">My Wallet</div>
                         <div class="card-body">
@@ -332,7 +261,6 @@
                     <div class="manage-profile-address pt-3">
                         <div class="d-flex ">
                             <h4 class="ml mx-5"><b>Available Address</b> </h4>
-                            {{!-- <a href="/addAddress" class="btn btn-dark rounded-4 ">Add Address</a> --}}
                         </div>
                         {{#each Address.address}}
                             <div class="d-flex mt-5 d1 ml-3">
@@ -362,69 +290,7 @@
                                 {{/unless}}
 <a href="/addAddress" class="btn btn-dark rounded-4 ">Add Address</a> 
                        
-                    </div>
-                    
-                    {{!-- <div class="porfile-items">
-                        <a href="/cart" class="profile-item">
-                            <b>Cart</b>
-                            <i class="ri-shopping-cart-line mx-2 "></i>
-                        </a>
-                    </div>
-                    <div class="porfile-items">
-                        <a href="/wishlist" class="profile-item">
-                            <b>Wishlist</b>
-                            <i class="ri-heart-line mx-2"></i>
-                        </a>
-                    </div>
-                    <div class="porfile-items">
-                        <a href="/orderlistpage" class="profile-item">
-                            <b>Order History</b>
-                            <i class="ri-shopping-bag-2-line mx-2"></i>
-                        </a>
-                    </div> --}}
-                   
-
-                    {{!-- <div class="row"></div>
-                </div>
-                <div class="col-12 col-md-6">
-
-                    {{#unless addAddress}}
-                    <div class="manage-profile-address pt-3">
-                        <div class="d-flex justify-content-around">
-                            <h4>Manage address </h4>
-                            <a href="/addAddress" class="btn btn-dark rounded-4 ">Add Address</a>
-                        </div>
-                        {{#each Address.address}}
-                            <div>
-                                <div class="man-ad-left">
-                                    <b>{{this.name}}</b>
-                                    <b>{{this.mobile}} </b>
-                                    <b>{{this.address}}</b>
-                                    <b>PIN:{{this.pincode}}</b>
-                                </div>
-                                    <div>
-                                        <a href="/deleteaddress/{{this.id}}" style="text-decoration: none;">
-                                            <i class="ri-delete-bin-5-line"></i>
-                                        </a>
-
-                                        <a href='/editaddress/{{this.id}}'><i class="ri-edit-box-line"
-                                                style="text-decoration: none;"></i></a>
-                                    </div>
-                                </div>
-                                {{/each}}
-
-
-
-                                {{else}}
-
-
-                                {{/unless}} --}}
-
-
-
-
-
-                            </div>
+                    </div> </div>
                         </div>
                     </div>
                 </div>

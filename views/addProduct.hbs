@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -187,8 +184,6 @@
    <script src="/admin/js/sidebar.js"></script>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-
 <body id="body-pd">
    <header class="header" id="header">
       <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
@@ -224,9 +219,7 @@
    <div class="height-100 bg-light">
       <main id="main" class="main">
          
- <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Add Product</p>
-  
-       
+ <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-5">Add Product</p>      
         <form action="/admin/add-product" method="POST" enctype="multipart/form-data">
   <div class="container mt-5">
            <label for="">Product Name</label>
@@ -243,8 +236,7 @@
             {{#each categorys}}
               <option value="{{this.category}}">{{this.category}}</option>
             {{/each}}
-          </select>
-          
+          </select>         
           <label for="">Description</label>
           <input type="text" name="description" class="form-control" required/>
           {{!-- image --}}
@@ -252,24 +244,10 @@
           <input type="file" id="form3Example1c" name="image" class="form-control" placeholder="image" required  />
           <label for="">Side Image</label>
           <input type="file" id="form3Example1c" name="sideimage" class="form-control" placeholder="image" required multiple />
-         
-
           <button type="submit" class="btn btn-success mt-5">Submit</button>
         </form>
-
-
-
-
-
-
-
-
-
       </main>
    </div>
-   
-
-
    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
          class="bi bi-arrow-up-short"></i></a>
    <script src="assets/js/apexcharts.min.js"></script>

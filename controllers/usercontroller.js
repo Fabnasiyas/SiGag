@@ -15,6 +15,7 @@ const bannerModel = require("../models/bannerModel");
 const mongoose = require("mongoose");
 const axios = require("axios");
 module.exports = {
+
   gethome: async (req, res) => {
     try {
       const products = await productModel.find().limit(3).lean();
@@ -42,6 +43,7 @@ module.exports = {
       res.render("login");
     }
   },
+
   // for  getting signup page
   getsignup: (req, res) => {
     res.render("signupform");
@@ -54,19 +56,16 @@ module.exports = {
         const message = "Name must be at least 3 characters long";
         return res.render("signupform", { message });
       }
-
       // Validate email field
       if (!req.body.email || !validator.isEmail(req.body.email)) {
         const message = "Please provide a valid email";
         return res.render("signupform", { message });
       }
-
       // Validate password field
       if (!req.body.password || req.body.password.length < 6) {
         const message = "Password must be at least 6 characters long";
         return res.render("signupform", { message });
       }
-
       // Validate mobile field
       if (
         !req.body.mobile ||
@@ -75,11 +74,13 @@ module.exports = {
         const message = "Please provide a valid mobile number";
         return res.render("signupform", { message });
       }
-
+      if (req.body.password !== req.body.confirmpassword) {
+        const message = "Passwords do not match";
+        return res.render("signupform", { message });
+      }
       // If all fields are valid, continue with signup process
       req.session.UserDetails = req.body;
       const userExist = await userModel.findOne({ email: req.body.email });
-
       if (userExist) {
         const message = "Already registered email. Please try with a new email";
         return res.render("signupform", { message });
@@ -111,7 +112,6 @@ module.exports = {
             message: "Your account has been blocked.",
           });
         } 
-        // else if (password == user.password) {
           else if (await bcrypt.compare(password, user.password)) {
           req.session.userLoggedIn = true;
           req.session.user = {
@@ -136,10 +136,9 @@ module.exports = {
       if (req.session.signupOTP == req.body.otp) {
         let block = false;
         let UserDetails = req.session.UserDetails;
-        const saltRounds = 10; // number of salt rounds for bcrypt
+        const saltRounds = 10; 
       const hashedPassword = await bcrypt.hash(UserDetails.password, saltRounds);
       const details = await new userModel({ ...UserDetails, password: hashedPassword, block });
-        // const details = await new userModel({ ...UserDetails, block });
         details.save((err, data) => {
           if (err) {
             console.log(err);
@@ -279,7 +278,6 @@ module.exports = {
   getviewproduct: async (req, res) => {
     try {
       const product = await productModel.findOne({ _id: req.params.id });
-
       res.render("viewproductdetails", { product });
     } catch (error) {
       console.log(error);
@@ -307,6 +305,7 @@ module.exports = {
       res.redirect("/404");
     }
   },
+
   hightolow: async (req, res) => {
     try {
       let priceprod;
@@ -405,7 +404,6 @@ module.exports = {
             },
           }
         );
-        // await productModel.updateOne({_id:req.params.id},{$inc:{stock:-1}})
         res.json({ success: true, stockValue, qty });
       }
     } catch (error) {
@@ -516,7 +514,6 @@ module.exports = {
           brandstatus: req.session.brandstatus,
           brandproduct: req.session.brandproduct,
         });
-        //req.session.brandstatus =false
       } else {
         res.render("viewallproducts", {
           allproducts,
@@ -535,7 +532,6 @@ module.exports = {
     try {
       const catgy = req.params.catgy;
       const catgproducts = await productModel.find({ category: catgy }).lean();
-      // const catgproducts = await productModel.find({ category:RegExp(catgy,'i') }).lean();
       res.render("procategory", { catgproducts });
     } catch (err) {
       console.error(err);
@@ -750,23 +746,26 @@ module.exports = {
     }
   },
 
-  applyCoupon: (req, res) => {
-    return new Promise((resolve, reject) => {
-      couponModel.findOne({ code: req.body.coupon }).then((coupon) => {
+  applyCoupon:async (req, res) => {
+   let coupon=await couponModel.findOne({ code:'req.body.coupon'})
         req.session.coupon = coupon;
         req.session.couponStatus = true;
         res.redirect("back");
-      });
-    });
+
   },
   getwalletamount: async (req, res) => {
     let givenwalletamount = parseInt(req.body.amount);
     req.session.givenwalletamount = givenwalletamount;
     let details = await userModel.findOne({ _id: req.session.user.id });
     let walletamount = details.Wallet;
-    if (givenwalletamount > walletamount && givenwalletamount > req.body.payable) {
+    if (givenwalletamount > walletamount)  {
       res.json({ success: false, message: 'enter a valid amount' });
-    } else {
+    }
+    else if(givenwalletamount > req.body.payable) {
+      res.json({ success: false, message: 'wallet amount is graiter than total amount' });
+    }
+    
+    else {
       let payable = Number(req.session.Allamount) - Number(givenwalletamount)
       res.json({ success: true, payable: payable })
     }
@@ -836,7 +835,7 @@ module.exports = {
             },
             order_meta: {
               return_url:
-                "http://localhost:4000/verifypayment?order_id={order_id}",
+                "http://sigag.online/verifypayment?order_id={order_id}",
             },
           },
         };
@@ -963,12 +962,8 @@ console.log(req.body);
           },
         }
       );
-      let udetail = await userModel.find({ _id: userid });
-      
-      res.redirect("back");
-      
-    
-     
+      let udetail = await userModel.find({ _id: userid });    
+      res.redirect("back");    
     } catch (err) {
       console.error(err);
       res.redirect("/404");
@@ -998,7 +993,6 @@ console.log(req.body);
       { _id: req.session.user.id },
       { $addToSet: { wishlist: { id: req.params.id } } }
     );
-
     res.redirect("back");
   },
 
